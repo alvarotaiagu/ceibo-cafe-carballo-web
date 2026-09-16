@@ -218,6 +218,16 @@ const bajarDespacio = async (page, hasta) => {
     ok('indicador: el tallo ha crecido en proporción al scroll (0 < p < 1)', ind.p > 0.3 && ind.p < 0.9, ind.p);
     ok('indicador: en "Una mañana" el nudo activo es el 5º, los 4 anteriores son capullos y su flor está abierta', ind.activo === 4 && ind.pasados === 4 && ind.nombre === 'Una mañana' && ind.florVisible, ind);
     ok('indicador: los nudos van en orden de arriba abajo', ind.tops.every((t, i) => i === 0 || t > ind.tops[i - 1]), ind.tops);
+    /* la barra crece como un único tramo continuo (scaleY), no como un guión repetido */
+    const barra = await page.evaluate(() => {
+      const crece = document.querySelector('.tallo-nav-crece');
+      const nav = document.querySelector('.tallo-nav');
+      const r = crece.getBoundingClientRect();
+      const navR = nav.getBoundingClientRect();
+      const p = parseFloat(nav.style.getPropertyValue('--p'));
+      return { altoReal: Math.round(r.height), altoEsperado: Math.round(navR.height * p), top: Math.round(r.top), navTop: Math.round(navR.top) };
+    });
+    ok('indicador: la barra verde es un único tramo continuo cuya altura coincide con el progreso (no un guión repetido)', Math.abs(barra.altoReal - barra.altoEsperado) < 3 && Math.abs(barra.top - barra.navTop) < 3, barra);
     await page.screenshot({ path: path.join(CAPS, '06b-indicador-tallo.png') });
     await page.click('.tallo-nudo[href="#carta"]');
     await page.waitForTimeout(2200);

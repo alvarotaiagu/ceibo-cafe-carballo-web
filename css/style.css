@@ -163,12 +163,17 @@ html.has-motion [data-reveal] { opacity: 0; transform: translateY(26px); }
    pétalo por sección que se abre al completarla, y el nombre de la sección.
    Los estados los pone js/main.js (initIndicador) con un listener de scroll
    propio, así funciona también sin GSAP y con reduced-motion (sin transiciones). */
-.tallo-nav { position: fixed; left: 12px; top: calc(var(--nav-h) + 2.5rem); bottom: 2.5rem; width: 32px; z-index: 60; }
+.tallo-nav { position: fixed; left: 12px; top: calc(var(--nav-h) + 2.5rem); bottom: 2.5rem; width: 32px; z-index: 60; --p: 0; }
 .tallo-nav[hidden] { display: none; }
-.tallo-nav-linea { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.tallo-nav-linea line { fill: none; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
-.tallo-nav-linea .base { stroke: var(--linea); }
-.tallo-nav-linea .crece { stroke: var(--matcha); stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--p, 0)); transition: stroke-dashoffset 0.12s linear; }
+/* la barra que "crece" es un simple scaleY: una técnica de línea SVG con
+   stroke-dasharray se probó primero, pero al estirar un viewBox bajo y ancho
+   sobre un contenedor muy alto y estrecho (preserveAspectRatio="none"), el
+   dash se repetía en vez de dibujarse como un único trazo continuo — se ve
+   como una línea discontinua en vez de crecer de una vez. Un div con
+   transform:scaleY no tiene ese problema. */
+.tallo-nav-base, .tallo-nav-crece { position: absolute; left: 50%; top: 0; width: 1.5px; height: 100%; margin-left: -0.75px; }
+.tallo-nav-base { background: var(--linea); }
+.tallo-nav-crece { background: var(--matcha); transform-origin: top center; transform: scaleY(var(--p, 0)); transition: transform 0.12s linear; }
 .tallo-nudo { position: absolute; left: 50%; width: 32px; height: 24px; transform: translate(-50%, -50%); display: block; text-decoration: none; }
 .tallo-nudo svg { width: 100%; height: 100%; overflow: visible; }
 .tallo-nudo .hoja { fill: var(--matcha); stroke: var(--matcha-2); stroke-width: 0.8; transform-box: fill-box; transform-origin: 0 50%; transform: scale(0.55); transition: transform 0.6s var(--ease), fill 0.4s, stroke 0.4s; }
@@ -514,7 +519,7 @@ address .precio { color: var(--cafe-3); font-size: 0.95rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .marquee-pista { animation: none; }
-  .btn, .petalo-card, .ig-feed img, .map-consent-flor, .tallo-nudo .hoja, .tallo-nudo .flor, .tallo-nombre, .tallo-nav-linea .crece, .cab-flor path { transition: none; }
+  .btn, .petalo-card, .ig-feed img, .map-consent-flor, .tallo-nudo .hoja, .tallo-nudo .flor, .tallo-nombre, .tallo-nav-crece, .cab-flor path { transition: none; }
 }
 @media print {
   .cabecera, .call-fab, .cookie-banner, .marquee, .petalo, .tallo-sep, .hero-scroll, .tallo-nav { display: none !important; }
