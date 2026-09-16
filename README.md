@@ -21,6 +21,14 @@ fuentes ni `js/main.js`.
 - Apertura el 1 de mayo de 2026; al frente Oriana Gisela Frare, vinculada a
   la hostelería de Carballo (fuente: Diario de Bergantiños). Se cita la
   apertura y el nombre, sin biografía.
+- Formación de Oriana Gisela Frare (diplomas reales pasados por el usuario
+  el 2026-09-17): Nestlé Jóvenes Baristas (Nestlé Professional / UTN.BA,
+  mayo de 2022, Buenos Aires), Barista por el Centro Internacional de
+  Coctelería (diciembre de 2022) y CSP Barista Skills–Foundation de la
+  Specialty Coffee Association (certificado 786516, junio de 2025). Son
+  cursos hechos en Buenos Aires, lo que hace más plausible el origen
+  argentino, pero sigue sin ser una confirmación explícita; el sitio no
+  menciona nacionalidad.
 - Instagram `@ceibocafe_` (1.092 seguidores), enlazado en cabecera de
   sección, feed y pie.
 - Horario: hay tres versiones distintas (Google / Instagram / Páxinas

@@ -292,6 +292,8 @@ html.has-motion .tallo-linea { stroke-dasharray: 1; stroke-dashoffset: 1; }
 .ficha-flor { width: 110px; margin: 0.6rem 0 0 auto; }
 .ceibo-texto .apertura { margin-top: 1.4rem; color: var(--cafe-2); }
 .ceibo-texto .fuente { color: var(--cafe-3); font-size: 0.9em; }
+.ceibo-texto .formacion { margin-top: 0.5rem; color: var(--cafe-3); font-size: 0.9rem; }
+.ceibo-texto .formacion em { color: var(--matcha-2); }
 
 /* ---------- Carta en ramas ---------- */
 .carta-cabeza { max-width: 900px; margin-bottom: 3.5rem; }
