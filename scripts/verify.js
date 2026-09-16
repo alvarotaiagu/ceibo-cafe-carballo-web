@@ -186,6 +186,15 @@ const bajarDespacio = async (page, hasta) => {
     await page.waitForTimeout(1200);
     const pila = await page.evaluate(() => Array.from(document.querySelectorAll('.manana-card')).map((c) => Math.round(c.getBoundingClientRect().top)));
     ok('sticky-stack: el paso 4 se pega y los tres anteriores siguen apilados detrás', pila[3] > pila[2] && pila[2] > pila[1] && pila[1] > pila[0] && pila[0] > 60, pila);
+    /* al seguir bajando, la pila sale entera: la penúltima no asoma por encima de la última */
+    let asoma = 0;
+    for (let paso = 0; paso < 12; paso++) {
+      await page.evaluate(() => window.scrollBy({ top: 60, behavior: 'instant' }));
+      await page.waitForTimeout(120);
+      const t = await page.evaluate(() => Array.from(document.querySelectorAll('.manana-card')).map((c) => Math.round(c.getBoundingClientRect().top)));
+      asoma = Math.max(asoma, t[3] - t[2]);
+    }
+    ok('sticky-stack: al salir, la penúltima tarjeta no sube por encima de la última (diferencia ≤ escalón de 22 px)', asoma <= 26, asoma);
     await page.screenshot({ path: path.join(CAPS, '06-manana-sticky.png') });
 
     /* contador */

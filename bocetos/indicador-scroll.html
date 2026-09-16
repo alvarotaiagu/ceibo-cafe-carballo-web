@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ceibo · bocetos del indicador de scroll</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --crema:#F6EFE4; --crema-2:#FBF7F0; --crema-3:#EFE5D5; --rojo:#9B1B1B; --matcha:#7E8F5A; --matcha-2:#5C6B44; --cafe:#3A2A22; --cafe-2:#5A483D; --cafe-3:#8A776A; --linea:rgba(58,42,34,.14); --serif:"Fraunces",Georgia,serif; --sans:"Nunito",sans-serif; --ease:cubic-bezier(.22,1,.36,1); }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#EFE7DA; color:var(--cafe); font-family:var(--sans); padding:2rem clamp(1rem,3vw,3rem) 4rem; }
+  h1 { font-family:var(--serif); font-weight:400; font-variation-settings:"opsz" 144,"SOFT" 50; font-size:clamp(2rem,4vw,3rem); margin:0 0 .3rem; }
+  .intro { color:var(--cafe-2); max-width:70ch; margin:0 0 2rem; }
+  .bocetos { display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:2rem; }
+  .boceto { background:var(--crema-2); border:1px solid var(--linea); border-radius:18px; padding:1.2rem; display:flex; flex-direction:column; gap:.8rem; }
+  .boceto h2 { font-family:var(--serif); font-weight:400; font-variation-settings:"opsz" 48,"SOFT" 40; font-size:1.5rem; margin:0; }
+  .boceto h2 b { color:var(--rojo); font-weight:400; font-style:italic; margin-right:.3em; }
+  .boceto p { margin:0; font-size:.92rem; color:var(--cafe-2); }
+  .boceto .pros { font-size:.8rem; color:var(--cafe-3); }
+  .boceto .pros strong { color:var(--matcha-2); }
+  .boceto .pros em { color:var(--rojo); font-style:normal; }
+
+  /* marco con página falsa */
+  .marco { position:relative; height:560px; border-radius:14px; overflow:hidden; border:1px solid var(--linea); background:var(--crema); box-shadow:inset 0 0 0 1px rgba(255,255,255,.5); }
+  .pagina { position:absolute; inset:0; overflow-y:auto; overflow-x:hidden; scrollbar-width:thin; scroll-behavior:smooth; }
+  .sec { height:420px; padding:2.6rem 2rem 2rem 4.2rem; border-top:1px solid var(--linea); }
+  .sec:nth-child(even) { background:var(--crema-2); }
+  .sec:first-child { border-top:0; height:520px; }
+  .sec small { display:block; font-weight:700; font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--rojo); margin-bottom:.5rem; }
+  .sec h3 { font-family:var(--serif); font-weight:400; font-variation-settings:"opsz" 96,"SOFT" 40; font-size:2rem; line-height:1; margin:0 0 .8rem; }
+  .sec .ln { height:8px; border-radius:4px; background:var(--crema-3); margin:.5rem 0; width:80%; }
+  .sec .ln + .ln { width:62%; }
+  .sec .ln + .ln + .ln { width:70%; }
+  .overlay { position:absolute; inset:0; pointer-events:none; }
+  .overlay * { pointer-events:auto; }
+
+  /* 1 · tallo lateral */
+  .tallo { position:absolute; left:14px; top:40px; bottom:40px; width:36px; }
+  .tallo svg { width:100%; height:100%; overflow:visible; }
+  .tallo .base { stroke:var(--linea); stroke-width:1.5; fill:none; }
+  .tallo .crece { stroke:var(--matcha); stroke-width:1.5; fill:none; transition:stroke-dashoffset .15s linear; }
+  .nudo { cursor:pointer; }
+  .nudo .hoja { fill:var(--matcha); stroke:var(--matcha-2); stroke-width:.8; transform-box:fill-box; transform-origin:0 50%; transform:scale(.55); transition:transform .6s var(--ease), fill .4s, stroke .4s; }
+  .nudo .flor { fill:var(--rojo); transform-box:fill-box; transform-origin:0 100%; transform:scale(0); transition:transform .7s cubic-bezier(.34,1.3,.64,1); }
+  .nudo.pasado .hoja { fill:var(--rojo); stroke:#5E0F10; transform:scale(.45); }
+  .nudo.activo .hoja { transform:scale(0); }
+  .nudo.activo .flor { transform:scale(1); }
+  .tallo-nombre { position:absolute; left:44px; font-family:var(--serif); font-style:italic; font-variation-settings:"opsz" 24; font-size:.95rem; color:var(--rojo); white-space:nowrap; opacity:0; transform:translateX(-8px); transition:opacity .5s, transform .5s var(--ease); pointer-events:none; }
+  .tallo-nombre.on { opacity:1; transform:none; }
+
+  /* 2 · pétalo en el margen */
+  .margen { position:absolute; right:10px; top:30px; bottom:30px; width:34px; }
+  .margen .guia { position:absolute; left:50%; top:0; bottom:0; width:1px; background:var(--linea); }
+  .marca { position:absolute; left:0; right:0; height:1px; background:var(--cafe-3); opacity:.5; }
+  .marca span { position:absolute; right:40px; top:-.6em; font-family:var(--serif); font-style:italic; font-size:.8rem; color:var(--cafe-3); white-space:nowrap; transition:color .4s, opacity .4s; opacity:.55; }
+  .marca.cerca span { color:var(--rojo); opacity:1; }
+  .petalo-caida { position:absolute; left:50%; top:0; width:34px; height:20px; margin-left:-17px; transition:transform .12s linear; }
+  .petalo-caida svg { width:100%; height:100%; overflow:visible; }
+
+  /* 3 · flor en la cabecera */
+  .cab { position:absolute; left:0; right:0; top:0; height:56px; display:flex; align-items:center; gap:.6rem; padding:0 1rem; background:linear-gradient(rgba(246,239,228,.96), rgba(246,239,228,.75)); backdrop-filter:blur(8px); border-bottom:1px solid var(--linea); }
+  .cab .logo { width:30px; height:30px; border-radius:50%; background:var(--rojo); }
+  .cab .nombre { font-family:var(--serif); font-size:1.15rem; }
+  .cab .mini { margin-left:auto; width:38px; height:38px; }
+  .cab .mini path { fill:var(--rojo); transform-box:fill-box; transform-origin:50% 100%; transform:scale(0); transition:transform .8s cubic-bezier(.34,1.3,.64,1); }
+  .cab .mini path.abierto { transform:scale(1); }
+  .cab .mini circle { fill:var(--matcha); }
+  .cab .seccion { font-family:var(--serif); font-style:italic; font-size:.85rem; color:var(--cafe-3); min-width:7ch; text-align:right; transition:opacity .4s; }
+
+  /* 4 · índice numerado */
+  .indice { position:absolute; right:18px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; align-items:flex-end; gap:.35rem; }
+  .indice::before { content:""; position:absolute; right:7px; top:-8px; bottom:-8px; width:1px; background:var(--linea); }
+  .num { position:relative; display:flex; align-items:center; gap:.5rem; cursor:pointer; padding-right:22px; font-family:var(--serif); font-style:italic; font-variation-settings:"opsz" 14; font-size:.8rem; color:var(--cafe-3); transition:font-size .5s var(--ease), color .4s; line-height:1.4; }
+  .num::after { content:""; position:absolute; right:4px; top:50%; width:7px; height:7px; margin-top:-3.5px; border-radius:50%; background:var(--crema-3); border:1px solid var(--linea); transition:background .4s, transform .5s var(--ease); }
+  .num .nom { font-style:normal; font-family:var(--sans); font-size:.7rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; opacity:0; transform:translateX(6px); transition:opacity .4s, transform .4s var(--ease); }
+  .num:hover .nom, .num.activo .nom { opacity:1; transform:none; }
+  .num.activo { font-size:1.35rem; color:var(--cafe); font-variation-settings:"opsz" 48; }
+  .num.activo::after { background:var(--rojo); border-color:var(--rojo); transform:scale(1.3); }
+  .num.pasado { color:var(--rojo); }
+
+  /* 5 · anillo en el botón flotante */
+  .fab { position:absolute; right:14px; bottom:14px; height:46px; padding:0 16px 0 8px; display:flex; align-items:center; gap:.5rem; border-radius:999px; background:var(--rojo); color:#fff; font-weight:700; font-size:.85rem; box-shadow:0 12px 30px -14px rgba(155,27,27,.8); }
+  .fab .anillo { width:32px; height:32px; border-radius:50%; background:conic-gradient(#fff var(--p, 0%), rgba(255,255,255,.28) 0); display:grid; place-items:center; transition:background .1s linear; }
+  .fab .anillo::after { content:"☎"; width:24px; height:24px; border-radius:50%; background:var(--rojo); display:grid; place-items:center; font-size:.8rem; }
+  .fab.fin .anillo::after { content:"➜"; }
+  .fab .txt { position:relative; display:inline-block; min-width:5.6em; }
+  .fab .txt span { position:absolute; left:0; top:50%; transform:translateY(-50%); transition:opacity .35s, transform .35s var(--ease); white-space:nowrap; }
+  .fab .txt .b { opacity:0; transform:translate(0, -30%); }
+  .fab.fin .txt .a { opacity:0; transform:translate(0, -80%); }
+  .fab.fin .txt .b { opacity:1; transform:translateY(-50%); }
+  .fab .pct { font-family:var(--serif); font-style:italic; font-weight:400; font-size:.78rem; opacity:.85; }
+</style>
+</head>
+<body>
+<h1>Indicador de scroll · cinco bocetos</h1>
+<p class="intro">Cada marco es una página falsa de Ceibo con siete secciones. Desplázate dentro de cada uno para ver el indicador. Son prototipos rápidos: el ritmo, los tamaños y las curvas se afinarían al construir el elegido.</p>
+
+<div class="bocetos">
+
+  <section class="boceto" data-boceto="tallo">
+    <h2><b>1</b>Tallo lateral que crece</h2>
+    <p>Un tallo fino en el margen izquierdo se dibuja con el scroll total. Cada sección es un nudo con una hoja; al llegar, la hoja brota en flor roja y aparece el nombre. Las pasadas quedan como capullos rojos. Clic para navegar.</p>
+    <div class="marco"><div class="pagina"></div><div class="overlay"><div class="tallo"><svg viewBox="0 0 36 480" preserveAspectRatio="none"><line class="base" x1="18" y1="0" x2="18" y2="480"/><line class="crece" x1="18" y1="0" x2="18" y2="480" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg></div></div></div>
+    <p class="pros"><strong>A favor:</strong> es el más "Ceibo", dice progreso y sección a la vez, navegable. <em>En contra:</em> ocupa margen; en móvil se reduce a una línea fina arriba.</p>
+  </section>
+
+  <section class="boceto" data-boceto="petalo">
+    <h2><b>2</b>Pétalo que cae por el margen</h2>
+    <p>Un solo pétalo baja por la altura de la ventana en proporción al scroll, girando despacio, y pasa por marcas con el nombre de cada sección. Al final se posa.</p>
+    <div class="marco"><div class="pagina"></div><div class="overlay"><div class="margen"><div class="guia"></div><div class="petalo-caida"><svg viewBox="-4 -88 136 92"><path d="M2 -2 C18 -46 62 -82 108 -66 C128 -59 126 -32 100 -20 C70 -6 34 -1 2 -2 Z" fill="#9B1B1B" stroke="#5E0F10" stroke-width="2"/><path d="M10 -8 C44 -34 78 -52 104 -58" fill="none" stroke="#5E0F10" stroke-width="1.6" stroke-opacity=".45"/></svg></div></div></div></div>
+    <p class="pros"><strong>A favor:</strong> poético, coherente con los pétalos que ya caen. <em>En contra:</em> menos legible como "índice"; los nombres compiten con el contenido.</p>
+  </section>
+
+  <section class="boceto" data-boceto="cabecera">
+    <h2><b>3</b>Flor en la cabecera</h2>
+    <p>Junto al logo, una flor con tantos pétalos como secciones. Cada sección completada abre un pétalo; al final de la página la flor está abierta del todo. A su lado, el nombre de la sección actual.</p>
+    <div class="marco"><div class="pagina"></div><div class="overlay"><div class="cab"><div class="logo"></div><span class="nombre">Ceibo</span><span class="seccion"></span><svg class="mini" viewBox="-20 -20 40 40"></svg></div></div></div>
+    <p class="pros"><strong>A favor:</strong> compacto, idéntico en móvil, cero ruido. <em>En contra:</em> el progreso se lee bien, la sección solo por el rótulo.</p>
+  </section>
+
+  <section class="boceto" data-boceto="indice">
+    <h2><b>4</b>Índice de lámina numerado</h2>
+    <p>Números romanos apilados a la derecha unidos por una línea de pelo. El activo crece de tamaño óptico y gana un punto rojo; al pasar el ratón se despliega el nombre. Clic para navegar.</p>
+    <div class="marco"><div class="pagina"></div><div class="overlay"><nav class="indice"></nav></div></div>
+    <p class="pros"><strong>A favor:</strong> el más editorial y discreto, muy "lámina botánica". <em>En contra:</em> no muestra el progreso continuo, solo la sección; en móvil se oculta.</p>
+  </section>
+
+  <section class="boceto" data-boceto="fab">
+    <h2><b>5</b>Anillo en el botón de llamar</h2>
+    <p>El botón flotante lleva un aro que se rellena con el scroll. Al llegar al final, el texto cambia a «Cómo llegar». No añade ningún elemento nuevo a la página.</p>
+    <div class="marco"><div class="pagina"></div><div class="overlay"><a class="fab" href="#"><span class="anillo"></span><span class="txt"><span class="a">Llamar</span><span class="b">Cómo llegar</span></span><span class="pct">0%</span></a></div></div>
+    <p class="pros"><strong>A favor:</strong> reutiliza algo que ya existe, perfecto en móvil. <em>En contra:</em> no dice en qué sección estás; combina bien con el 1 o el 4 en escritorio.</p>
+  </section>
+
+</div>
+
+<script>
+(function () {
+  const SECS = ['Inicio', 'La flor', 'Carta', 'Café', 'Una mañana', 'Reseñas', 'Contacto'];
+  const ROM = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
+
+  function paginaFalsa(el) {
+    el.innerHTML = SECS.map((s, i) => `<section class="sec" id="s${i}"><small>${ROM[i]} · sección</small><h3>${s}</h3><div class="ln"></div><div class="ln"></div><div class="ln"></div></section>`).join('');
+  }
+  function estado(pag) {
+    const max = pag.scrollHeight - pag.clientHeight;
+    const p = max > 0 ? pag.scrollTop / max : 0;
+    const secs = Array.from(pag.querySelectorAll('.sec'));
+    let activo = 0;
+    secs.forEach((s, i) => { if (s.offsetTop <= pag.scrollTop + pag.clientHeight * 0.42) activo = i; });
+    return { p, activo, secs };
+  }
+
+  document.querySelectorAll('.boceto').forEach((b) => {
+    const tipo = b.dataset.boceto;
+    const pag = b.querySelector('.pagina');
+    paginaFalsa(pag);
+    const ov = b.querySelector('.overlay');
+    const H = pag.clientHeight;
+    let render = () => {};
+
+    if (tipo === 'tallo') {
+      const svg = ov.querySelector('svg');
+      const crece = svg.querySelector('.crece');
+      const nudos = SECS.map((s, i) => {
+        const y = 12 + i * (456 / (SECS.length - 1));
+        const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        g.setAttribute('class', 'nudo');
+        g.setAttribute('transform', `translate(18 ${y})`);
+        g.innerHTML = `<circle r="7" fill="transparent"/><path class="hoja" d="M0 0 C4 -8 14 -8 20 0 C14 8 4 8 0 0 Z"/><path class="flor" d="M0 0 C2 -8 10 -14 18 -11 C22 -10 21 -5 16 -3 C11 0 5 0 0 0 Z"/>`;
+        g.addEventListener('click', () => pag.scrollTo({ top: pag.querySelector('#s' + i).offsetTop, behavior: 'smooth' }));
+        svg.appendChild(g);
+        const nombre = document.createElement('span');
+        nombre.className = 'tallo-nombre'; nombre.textContent = s;
+        nombre.style.top = (40 + y - 8) + 'px';
+        ov.appendChild(nombre);
+        return { g, nombre };
+      });
+      render = ({ p, activo }) => {
+        crece.style.strokeDashoffset = 1 - p;
+        nudos.forEach((n, i) => {
+          n.g.classList.toggle('activo', i === activo);
+          n.g.classList.toggle('pasado', i < activo);
+          n.nombre.classList.toggle('on', i === activo);
+        });
+      };
+    }
+
+    if (tipo === 'petalo') {
+      const margen = ov.querySelector('.margen');
+      const pet = ov.querySelector('.petalo-caida');
+      const alto = H - 60;
+      const marcas = [];
+      render = ({ p, activo, secs }) => {
+        if (!marcas.length) {
+          const max = pag.scrollHeight - pag.clientHeight;
+          secs.forEach((s, i) => {
+            const m = document.createElement('div');
+            m.className = 'marca';
+            m.style.top = (Math.min(1, s.offsetTop / max) * alto + 10) + 'px';
+            m.innerHTML = `<span>${SECS[i]}</span>`;
+            margen.appendChild(m); marcas.push(m);
+          });
+        }
+        pet.style.transform = `translateY(${p * alto}px) rotate(${-20 + p * 200}deg)`;
+        marcas.forEach((m, i) => m.classList.toggle('cerca', i === activo));
+      };
+    }
+
+    if (tipo === 'cabecera') {
+      const mini = ov.querySelector('.mini');
+      const n = SECS.length;
+      mini.innerHTML = SECS.map((s, i) => {
+        const a = -90 + i * (360 / n);
+        return `<g transform="rotate(${a})"><path d="M0 0 C-4 -6 -4 -14 0 -18 C4 -14 4 -6 0 0 Z"/></g>`;
+      }).join('') + '<circle r="2.6"/>';
+      const petalos = Array.from(mini.querySelectorAll('path'));
+      const rot = ov.querySelector('.seccion');
+      render = ({ activo }) => {
+        petalos.forEach((pt, i) => pt.classList.toggle('abierto', i <= activo));
+        if (rot.textContent !== SECS[activo]) { rot.style.opacity = 0; setTimeout(() => { rot.textContent = SECS[activo]; rot.style.opacity = 1; }, 200); }
+      };
+    }
+
+    if (tipo === 'indice') {
+      const nav = ov.querySelector('.indice');
+      const nums = SECS.map((s, i) => {
+        const a = document.createElement('a');
+        a.className = 'num'; a.innerHTML = `<span class="nom">${s}</span>${ROM[i]}`;
+        a.addEventListener('click', () => pag.scrollTo({ top: pag.querySelector('#s' + i).offsetTop, behavior: 'smooth' }));
+        nav.appendChild(a); return a;
+      });
+      render = ({ activo }) => nums.forEach((a, i) => { a.classList.toggle('activo', i === activo); a.classList.toggle('pasado', i < activo); });
+    }
+
+    if (tipo === 'fab') {
+      const fab = ov.querySelector('.fab');
+      const anillo = fab.querySelector('.anillo');
+      const pct = fab.querySelector('.pct');
+      fab.addEventListener('click', (e) => e.preventDefault());
+      render = ({ p }) => {
+        anillo.style.setProperty('--p', (p * 100).toFixed(1) + '%');
+        pct.textContent = Math.round(p * 100) + '%';
+        fab.classList.toggle('fin', p > 0.97);
+      };
+    }
+
+    const tick = () => render(estado(pag));
+    pag.addEventListener('scroll', tick, { passive: true });
+    tick();
+  });
+})();
+</script>
+</body>
+</html>

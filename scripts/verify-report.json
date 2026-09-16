@@ -1,7 +1,7 @@
 {
-  "fecha": "2026-09-16T20:47:30.534Z",
+  "fecha": "2026-09-16T20:52:28.537Z",
   "base": "http://127.0.0.1:8993/",
-  "total": 46,
+  "total": 47,
   "fallos": 0,
   "resultados": [
     {
@@ -52,7 +52,7 @@
     {
       "prueba": "magnetic: el CTA se desplaza con el puntero",
       "ok": true,
-      "detalle": "matrix(1, 0, 0, 1, 18.0065, -6.6289)"
+      "detalle": "matrix(1, 0, 0, 1, 18.0004, -6.6274)"
     },
     {
       "prueba": "magnetic: vuelve a su sitio al salir",
@@ -159,6 +159,11 @@
         141,
         163
       ]
+    },
+    {
+      "prueba": "sticky-stack: al salir, la penúltima tarjeta no sube por encima de la última (diferencia ≤ escalón de 22 px)",
+      "ok": true,
+      "detalle": 0
     },
     {
       "prueba": "reseñas: el contador llega a 27",
