@@ -231,14 +231,16 @@
     tl.to(cards, { opacity: 1, scale: 1, duration: 1.0, stagger: 0.11, ease: "back.out(1.4)" }, 0.5);
   });
 
-  /* ---------- Una mañana: sticky-stack; la tarjeta que queda atrás se encoge ---------- */
+  /* ---------- Una mañana: sticky-stack; la tarjeta que queda atrás se encoge.
+     Solo escala, sin opacidad: si la tarjeta delantera se vuelve translúcida
+     se leen a través de ella los títulos de las que quedaron pegadas detrás. ---------- */
   const pasos = $$(".manana-paso");
   pasos.forEach((li, i) => {
     const next = pasos[i + 1];
     if (!next) return;
     const card = $(".manana-card", li);
     gsap.to(card, {
-      scale: 0.94, opacity: 0.7, ease: "none",
+      scale: 0.94, ease: "none",
       scrollTrigger: { trigger: next, start: "top bottom", end: "top top+=160", scrub: true }
     });
   });
