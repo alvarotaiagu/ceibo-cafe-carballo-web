@@ -15,6 +15,9 @@ fuentes ni `js/main.js`.
   FAB y en `#contacto`).
 - Google: 4,9 ★ sobre 27 reseñas, precio 1–10 € por persona. Está en el
   hero, en `#resenas` (contador) y en el `AggregateRating` del JSON-LD.
+- Cuatro reseñas reales de Google (capturas pasadas por el usuario el
+  2026-09-16), transcritas tal cual con nombres abreviados a petición del
+  usuario (Bird, Jano A., Pilar M., Jon C.) y fecha aproximada por mes.
 - Apertura el 1 de mayo de 2026; al frente Oriana Gisela Frare, vinculada a
   la hostelería de Carballo (fuente: Diario de Bergantiños). Se cita la
   apertura y el nombre, sin biografía.
@@ -37,7 +40,6 @@ fuentes ni `js/main.js`.
   previsto para UNA línea de origen si el cliente lo confirma; a fecha de
   entrega el origen argentino es plausible pero **no confirmado** y el
   sitio no lo menciona.
-- Textos de reseñas → tres tarjetas `[TEXTO DE RESEÑA PENDIENTE]`.
 - Carta real (productos, precios, orígenes, tuestes, notas de cata) →
   está en el destacado "Carta" de Instagram, no accesible.
 - Wifi, reservas, pedidos para llevar, proveedor de café, equipo → no se

@@ -337,7 +337,9 @@ figcaption { font-size: 0.72rem; color: var(--cafe-3); padding: 0.45rem 0.6rem; 
 .cifra-resenas { margin-top: 0.6rem; font-weight: 700; }
 .contador { font-family: var(--serif); font-size: 1.4em; font-variation-settings: "opsz" 48; color: var(--cafe); }
 .resenas-cabeza { margin-bottom: 2rem; }
-.resenas-lista { display: grid; gap: 1rem; }
+.resenas-lista { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.resena--destacada { grid-column: 1 / -1; }
+.resena--destacada .resena-texto { font-size: clamp(1.25rem, 1.8vw, 1.55rem); font-variation-settings: "opsz" 48, "SOFT" 40; max-width: 46ch; }
 .resena { background: var(--crema-2); border: 1px solid var(--linea-suave); border-radius: 16px; padding: 1.4rem 1.6rem; }
 .resena-texto { font-family: var(--serif); font-variation-settings: "opsz" 24, "SOFT" 40; font-size: 1.15rem; color: var(--cafe-2); }
 .resena-texto::before { content: "“"; color: var(--rojo); margin-right: 0.15em; }
@@ -431,6 +433,7 @@ address .precio { color: var(--cafe-3); font-size: 0.95rem; }
   .resenas { grid-template-columns: 1fr; }
   .resenas-cifra { position: static; }
   .resenas-enlace { grid-column: auto; }
+  .resenas-lista { grid-template-columns: 1fr; }
   .manana-card { grid-template-columns: 1fr; }
   .manana-card figure { min-height: 240px; }
   .manana-paso { margin-bottom: 18vh; }

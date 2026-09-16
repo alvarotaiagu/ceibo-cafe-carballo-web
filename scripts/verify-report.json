@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-09-16T20:37:21.733Z",
+  "fecha": "2026-09-16T20:39:43.870Z",
   "base": "http://127.0.0.1:8993/",
   "total": 45,
   "fallos": 0,
@@ -17,7 +17,7 @@
     {
       "prueba": "hero: al cargar la mayoría de flores aún no se han abierto (se abren una a una)",
       "ok": true,
-      "detalle": 10
+      "detalle": 9
     },
     {
       "prueba": "hero: todas las flores abiertas tras ~3,5 s",
@@ -52,7 +52,7 @@
     {
       "prueba": "magnetic: el CTA se desplaza con el puntero",
       "ok": true,
-      "detalle": "matrix(1, 0, 0, 1, 17.9963, -6.6239)"
+      "detalle": "matrix(1, 0, 0, 1, 18.0191, -6.6327)"
     },
     {
       "prueba": "magnetic: vuelve a su sitio al salir",
