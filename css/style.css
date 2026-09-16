@@ -156,6 +156,45 @@ html.has-motion [data-reveal] { opacity: 0; transform: translateY(26px); }
 .nav-movil:not([hidden]) { display: flex; }
 .nav-movil a { text-decoration: none; font-family: var(--serif); font-size: 1.5rem; padding: 0.5rem 0; border-bottom: 1px solid var(--linea-suave); }
 
+/* ---------- Indicador de progreso ----------
+   Escritorio: tallo lateral fijo que crece con el scroll total; cada sección
+   es un nudo con una hoja que, al llegar, se abre en flor roja y muestra su
+   nombre; las pasadas quedan como capullos. Móvil: flor en la cabecera con un
+   pétalo por sección que se abre al completarla, y el nombre de la sección.
+   Los estados los pone js/main.js (initIndicador) con un listener de scroll
+   propio, así funciona también sin GSAP y con reduced-motion (sin transiciones). */
+.tallo-nav { position: fixed; left: 12px; top: calc(var(--nav-h) + 2.5rem); bottom: 2.5rem; width: 32px; z-index: 60; }
+.tallo-nav[hidden] { display: none; }
+.tallo-nav-linea { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.tallo-nav-linea line { fill: none; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.tallo-nav-linea .base { stroke: var(--linea); }
+.tallo-nav-linea .crece { stroke: var(--matcha); stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--p, 0)); transition: stroke-dashoffset 0.12s linear; }
+.tallo-nudo { position: absolute; left: 50%; width: 32px; height: 24px; transform: translate(-50%, -50%); display: block; text-decoration: none; }
+.tallo-nudo svg { width: 100%; height: 100%; overflow: visible; }
+.tallo-nudo .hoja { fill: var(--matcha); stroke: var(--matcha-2); stroke-width: 0.8; transform-box: fill-box; transform-origin: 0 50%; transform: scale(0.55); transition: transform 0.6s var(--ease), fill 0.4s, stroke 0.4s; }
+.tallo-nudo .flor { fill: var(--rojo); transform-box: fill-box; transform-origin: 0 100%; transform: scale(0); transition: transform 0.7s cubic-bezier(0.34, 1.3, 0.64, 1); }
+.tallo-nudo.es-pasado .hoja { fill: var(--rojo); stroke: #5E0F10; transform: scale(0.42); }
+.tallo-nudo.es-activo .hoja { transform: scale(0); }
+.tallo-nudo.es-activo .flor { transform: scale(1); }
+.tallo-nombre {
+  position: absolute; left: 30px; top: 50%; transform: translate(-6px, -50%);
+  font-family: var(--serif); font-style: italic; font-variation-settings: "opsz" 24, "SOFT" 40; font-size: 0.92rem; color: var(--rojo);
+  white-space: nowrap; background: var(--crema); padding: 0.05em 0.5em; border-radius: 999px;
+  opacity: 0; transition: opacity 0.45s, transform 0.5s var(--ease); pointer-events: none;
+}
+.tallo-nudo.es-activo .tallo-nombre, .tallo-nudo:hover .tallo-nombre, .tallo-nudo:focus-visible .tallo-nombre { opacity: 1; transform: translate(0, -50%); }
+.cab-seccion, .cab-flor { display: none; }
+@media (max-width: 1100px) {
+  .tallo-nav { display: none; }
+  .cabecera { gap: 0.75rem; }
+  .cab-seccion { display: block; margin-left: auto; font-family: var(--serif); font-style: italic; font-variation-settings: "opsz" 24, "SOFT" 40; font-size: 0.9rem; color: var(--cafe-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 46vw; transition: opacity 0.35s; }
+  .cab-flor { display: block; width: 36px; height: 36px; flex: 0 0 auto; margin-left: 0.2rem; }
+  .cab-flor path { fill: var(--rojo); transform-box: fill-box; transform-origin: 50% 100%; transform: scale(0); transition: transform 0.8s cubic-bezier(0.34, 1.3, 0.64, 1); }
+  .cab-flor path.abierto { transform: scale(1); }
+  .cab-flor circle { fill: var(--matcha); }
+}
+@media (max-width: 360px) { .cab-seccion { display: none; } }
+
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
@@ -439,7 +478,8 @@ address .precio { color: var(--cafe-3); font-size: 0.95rem; }
   .resenas { grid-template-columns: 1fr; }
   .resenas-cifra { position: static; }
   .resenas-enlace { grid-column: auto; }
-  .resenas-lista { grid-template-columns: 1fr; }
+  .resenas-lista { grid-column: auto; grid-template-columns: 1fr; }
+  .resena--destacada { grid-column: auto; }
   .manana-card { grid-template-columns: 1fr; }
   .manana-card figure { min-height: 240px; }
   .manana-paso { margin-bottom: 18vh; }
@@ -474,8 +514,8 @@ address .precio { color: var(--cafe-3); font-size: 0.95rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .marquee-pista { animation: none; }
-  .btn, .petalo-card, .ig-feed img, .map-consent-flor { transition: none; }
+  .btn, .petalo-card, .ig-feed img, .map-consent-flor, .tallo-nudo .hoja, .tallo-nudo .flor, .tallo-nombre, .tallo-nav-linea .crece, .cab-flor path { transition: none; }
 }
 @media print {
-  .cabecera, .call-fab, .cookie-banner, .marquee, .petalo, .tallo-sep, .hero-scroll { display: none !important; }
+  .cabecera, .call-fab, .cookie-banner, .marquee, .petalo, .tallo-sep, .hero-scroll, .tallo-nav { display: none !important; }
 }

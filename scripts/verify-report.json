@@ -1,7 +1,7 @@
 {
-  "fecha": "2026-09-16T20:52:28.537Z",
+  "fecha": "2026-09-16T21:03:49.232Z",
   "base": "http://127.0.0.1:8993/",
-  "total": 47,
+  "total": 56,
   "fallos": 0,
   "resultados": [
     {
@@ -52,7 +52,7 @@
     {
       "prueba": "magnetic: el CTA se desplaza con el puntero",
       "ok": true,
-      "detalle": "matrix(1, 0, 0, 1, 18.0004, -6.6274)"
+      "detalle": "matrix(1, 0, 0, 1, 17.9879, -6.6212)"
     },
     {
       "prueba": "magnetic: vuelve a su sitio al salir",
@@ -166,6 +166,76 @@
       "detalle": 0
     },
     {
+      "prueba": "indicador: el tallo lateral se ve en escritorio con un nudo por sección",
+      "ok": true,
+      "detalle": {
+        "visible": true,
+        "nudos": 8,
+        "p": 0.5637,
+        "activo": 4,
+        "pasados": 4,
+        "nombre": "Una mañana",
+        "florVisible": true,
+        "tops": [
+          0,
+          7.96,
+          17.33,
+          44.41,
+          56.83,
+          78.85,
+          90.43,
+          97.34
+        ]
+      }
+    },
+    {
+      "prueba": "indicador: el tallo ha crecido en proporción al scroll (0 < p < 1)",
+      "ok": true,
+      "detalle": 0.5637
+    },
+    {
+      "prueba": "indicador: en \"Una mañana\" el nudo activo es el 5º, los 4 anteriores son capullos y su flor está abierta",
+      "ok": true,
+      "detalle": {
+        "visible": true,
+        "nudos": 8,
+        "p": 0.5637,
+        "activo": 4,
+        "pasados": 4,
+        "nombre": "Una mañana",
+        "florVisible": true,
+        "tops": [
+          0,
+          7.96,
+          17.33,
+          44.41,
+          56.83,
+          78.85,
+          90.43,
+          97.34
+        ]
+      }
+    },
+    {
+      "prueba": "indicador: los nudos van en orden de arriba abajo",
+      "ok": true,
+      "detalle": [
+        0,
+        7.96,
+        17.33,
+        44.41,
+        56.83,
+        78.85,
+        90.43,
+        97.34
+      ]
+    },
+    {
+      "prueba": "indicador: clic en un nudo lleva a su sección",
+      "ok": true,
+      "detalle": null
+    },
+    {
       "prueba": "reseñas: el contador llega a 27",
       "ok": true,
       "detalle": "27"
@@ -263,6 +333,45 @@
       "ok": true,
       "detalle": {
         "scroll": 400,
+        "ventana": 400
+      }
+    },
+    {
+      "prueba": "móvil 400: el tallo lateral no se muestra",
+      "ok": true,
+      "detalle": "none"
+    },
+    {
+      "prueba": "móvil 400: la flor de la cabecera tiene 8 pétalos y en \"Una mañana\" hay 5 abiertos",
+      "ok": true,
+      "detalle": {
+        "tallo": "none",
+        "petalos": 8,
+        "abiertos": 5,
+        "rotulo": "Una mañana",
+        "florVisible": true,
+        "ancho": true
+      }
+    },
+    {
+      "prueba": "móvil 400: la cabecera muestra el nombre de la sección y no desborda",
+      "ok": true,
+      "detalle": {
+        "tallo": "none",
+        "petalos": 8,
+        "abiertos": 5,
+        "rotulo": "Una mañana",
+        "florVisible": true,
+        "ancho": true
+      }
+    },
+    {
+      "prueba": "móvil 400: las reseñas ocupan todo el ancho, bajo la cifra, sin columna vacía a la izquierda",
+      "ok": true,
+      "detalle": {
+        "anchoMin": 368,
+        "izq": 16,
+        "cifraIzq": 16,
         "ventana": 400
       }
     },

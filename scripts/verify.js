@@ -197,6 +197,33 @@ const bajarDespacio = async (page, hasta) => {
     ok('sticky-stack: al salir, la penúltima tarjeta no sube por encima de la última (diferencia ≤ escalón de 22 px)', asoma <= 26, asoma);
     await page.screenshot({ path: path.join(CAPS, '06-manana-sticky.png') });
 
+    /* indicador de escritorio: tallo que crece, nudo activo y navegación */
+    await irA(page, '#manana', 60);
+    await page.waitForTimeout(900);
+    const ind = await page.evaluate(() => {
+      const nav = document.querySelector('.tallo-nav');
+      const nudos = Array.from(nav.querySelectorAll('.tallo-nudo'));
+      return {
+        visible: getComputedStyle(nav).display !== 'none' && !nav.hidden,
+        nudos: nudos.length,
+        p: parseFloat(nav.style.getPropertyValue('--p')),
+        activo: nudos.findIndex((n) => n.classList.contains('es-activo')),
+        pasados: nudos.filter((n) => n.classList.contains('es-pasado')).length,
+        nombre: nudos.find((n) => n.classList.contains('es-activo')).getAttribute('aria-label'),
+        florVisible: parseFloat(getComputedStyle(nudos.find((n) => n.classList.contains('es-activo')).querySelector('.flor')).transform.split(',')[0].replace('matrix(', '')) > 0.9,
+        tops: nudos.map((n) => parseFloat(n.style.top))
+      };
+    });
+    ok('indicador: el tallo lateral se ve en escritorio con un nudo por sección', ind.visible && ind.nudos === 8, ind);
+    ok('indicador: el tallo ha crecido en proporción al scroll (0 < p < 1)', ind.p > 0.3 && ind.p < 0.9, ind.p);
+    ok('indicador: en "Una mañana" el nudo activo es el 5º, los 4 anteriores son capullos y su flor está abierta', ind.activo === 4 && ind.pasados === 4 && ind.nombre === 'Una mañana' && ind.florVisible, ind);
+    ok('indicador: los nudos van en orden de arriba abajo', ind.tops.every((t, i) => i === 0 || t > ind.tops[i - 1]), ind.tops);
+    await page.screenshot({ path: path.join(CAPS, '06b-indicador-tallo.png') });
+    await page.click('.tallo-nudo[href="#carta"]');
+    await page.waitForTimeout(2200);
+    const enCarta = await page.evaluate(() => Math.abs(document.querySelector('#carta').getBoundingClientRect().top - 72) < 60);
+    ok('indicador: clic en un nudo lleva a su sección', enCarta);
+
     /* contador */
     await irA(page, '#resenas', 100);
     await page.waitForTimeout(2600);
@@ -295,6 +322,31 @@ const bajarDespacio = async (page, hasta) => {
     ok('móvil 400: sigue sin scroll horizontal tras bajar', ancho2.scroll <= ancho2.ventana + 1, ancho2);
     await irA(page, '#carta', 60);
     await page.screenshot({ path: path.join(CAPS, '12-movil-carta-lista.png') });
+    /* indicador móvil: flor en la cabecera con un pétalo por sección, el tallo oculto */
+    await irA(page, '#manana', 60);
+    await page.waitForTimeout(1200);
+    const cab = await page.evaluate(() => ({
+      tallo: getComputedStyle(document.querySelector('.tallo-nav')).display,
+      petalos: document.querySelectorAll('.cab-flor path').length,
+      abiertos: document.querySelectorAll('.cab-flor path.abierto').length,
+      rotulo: document.querySelector('.cab-seccion').textContent,
+      florVisible: getComputedStyle(document.querySelector('.cab-flor')).display !== 'none',
+      ancho: document.querySelector('.cabecera').scrollWidth <= window.innerWidth
+    }));
+    ok('móvil 400: el tallo lateral no se muestra', cab.tallo === 'none', cab.tallo);
+    ok('móvil 400: la flor de la cabecera tiene 8 pétalos y en "Una mañana" hay 5 abiertos', cab.florVisible && cab.petalos === 8 && cab.abiertos === 5, cab);
+    ok('móvil 400: la cabecera muestra el nombre de la sección y no desborda', cab.rotulo === 'Una mañana' && cab.ancho, cab);
+    await page.screenshot({ path: path.join(CAPS, '12b-movil-cabecera-flor.png') });
+    /* reseñas a una columna y a todo el ancho */
+    await irA(page, '#resenas', 60);
+    await page.waitForTimeout(1200);
+    const res = await page.evaluate(() => {
+      const cards = Array.from(document.querySelectorAll('.resena')).map((c) => c.getBoundingClientRect());
+      const cifra = document.querySelector('.resenas-cifra').getBoundingClientRect();
+      return { anchoMin: Math.round(Math.min(...cards.map((r) => r.width))), izq: Math.round(cards[0].left), cifraIzq: Math.round(cifra.left), ventana: window.innerWidth };
+    });
+    ok('móvil 400: las reseñas ocupan todo el ancho, bajo la cifra, sin columna vacía a la izquierda', res.anchoMin >= res.ventana - 40 && res.izq === res.cifraIzq, res);
+    await page.screenshot({ path: path.join(CAPS, '12c-movil-resenas.png') });
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.waitForTimeout(500);
     await page.click('.nav-toggle');

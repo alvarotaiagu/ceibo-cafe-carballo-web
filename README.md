@@ -79,6 +79,14 @@ repetido: el motivo del sitio es la flor.
 - **Una mañana en Ceibo**: sticky-stack de cuatro pasos (el `<li>` es el
   sticky, el `margin-bottom` es el recorrido); la tarjeta que queda atrás
   se encoge un poco.
+- **Indicador de progreso** (`initIndicador()` en `js/main.js`, sin GSAP):
+  en escritorio un tallo lateral fijo (`.tallo-nav`) que crece con el
+  scroll total, con un nudo por sección situado en proporción a su inicio;
+  la hoja del nudo activo se abre en flor roja y muestra el nombre, las
+  pasadas quedan como capullos, y cada nudo es un enlace. En móvil
+  (≤ 1100 px) una flor en la cabecera (`.cab-flor`) con un pétalo por
+  sección que se abre al completarla, más el nombre de la sección actual.
+  Elegido por el usuario entre cinco bocetos (`bocetos/indicador-scroll.html`).
 - Además: Lenis, char-reveal serif en todos los titulares, botones
   magnéticos, marquee lento en itálica, contador de reseñas.
 - Paleta: crema #F6EFE4, rojo ceibo #9B1B1B, verde matcha #7E8F5A (solo
@@ -126,7 +134,7 @@ luces→crema, viñeta y grano finos. Salida 1600/900 px + LQIP en
 
 `python -m http.server 8993` en la raíz y
 `NODE_PATH=/c/Users/alvar/node_modules node scripts/verify.js`:
-45 pruebas (apertura de la flor, char-reveal, marquee, magnetic, cookies,
+56 pruebas (apertura de la flor, indicador de progreso en escritorio y móvil, char-reveal, marquee, magnetic, cookies,
 pétalos ligados al scroll, separadores, anillo de la carta y cambio a
 verde, sticky-stack, contador, mapa bajo demanda, reduced-motion, sin CDN,
 móvil 400 px sin scroll horizontal y ramas en lista, menú, longtasks).

@@ -127,6 +127,106 @@
     gsap.ticker.lagSmoothing(0);
   }
 
+  /* ---------- Indicador de progreso: tallo lateral (escritorio) y flor en la
+     cabecera (móvil). Listener de scroll propio (sin GSAP) para que funcione
+     también sin CDN y con reduced-motion; el CSS decide cuál se ve. ---------- */
+  (function initIndicador() {
+    const SECCIONES = [
+      { el: $(".hero"), href: "#inicio", nombre: "Inicio" },
+      { el: $("#ceibo"), href: "#ceibo", nombre: "La flor" },
+      { el: $("#carta"), href: "#carta", nombre: "Carta" },
+      { el: $("#especialidad"), href: "#especialidad", nombre: "Café" },
+      { el: $("#manana"), href: "#manana", nombre: "Una mañana" },
+      { el: $("#resenas"), href: "#resenas", nombre: "Reseñas" },
+      { el: $("#instagram"), href: "#instagram", nombre: "Instagram" },
+      { el: $("#contacto"), href: "#contacto", nombre: "Contacto" }
+    ].filter((s) => s.el);
+    const tallo = $(".tallo-nav");
+    const flor = $(".cab-flor");
+    const rotulo = $(".cab-seccion");
+    if (!SECCIONES.length || (!tallo && !flor)) return;
+    const NS = "http://www.w3.org/2000/svg";
+
+    /* nudos del tallo: <a> con hoja + flor + nombre, situados en proporción
+       al inicio de cada sección sobre el scroll total */
+    const nudos = [];
+    if (tallo) {
+      SECCIONES.forEach((s) => {
+        const a = document.createElement("a");
+        a.className = "tallo-nudo";
+        a.href = s.href;
+        a.setAttribute("aria-label", s.nombre);
+        a.innerHTML = '<svg viewBox="-6 -12 32 24" aria-hidden="true"><circle r="9" fill="transparent"/>' +
+          '<path class="hoja" d="M0 0 C4 -8 14 -8 20 0 C14 8 4 8 0 0 Z"/>' +
+          '<path class="flor" d="M0 0 C2 -8 10 -14 18 -11 C22 -10 21 -5 16 -3 C11 0 5 0 0 0 Z"/></svg>' +
+          '<span class="tallo-nombre">' + s.nombre + "</span>";
+        tallo.appendChild(a);
+        nudos.push(a);
+      });
+      tallo.hidden = false;
+    }
+
+    /* pétalos de la flor de la cabecera: uno por sección, en un <g> girado
+       (el giro va en el <g> porque el transform CSS del pétalo pisaría el
+       atributo transform si estuviera en el mismo elemento) */
+    const petalos = [];
+    if (flor) {
+      SECCIONES.forEach((s, i) => {
+        const g = document.createElementNS(NS, "g");
+        g.setAttribute("transform", "rotate(" + (-90 + i * (360 / SECCIONES.length)) + ")");
+        const p = document.createElementNS(NS, "path");
+        p.setAttribute("d", "M0 0 C-4 -6 -4 -14 0 -18 C4 -14 4 -6 0 0 Z");
+        g.appendChild(p);
+        flor.appendChild(g);
+        petalos.push(p);
+      });
+      const c = document.createElementNS(NS, "circle");
+      c.setAttribute("r", "2.6");
+      flor.appendChild(c);
+    }
+
+    let offsets = [];
+    let max = 1;
+    function medir() {
+      max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      offsets = SECCIONES.map((s) => s.el.getBoundingClientRect().top + window.scrollY);
+      nudos.forEach((a, i) => { a.style.top = (Math.min(1, offsets[i] / max) * 100).toFixed(2) + "%"; });
+    }
+    let activo = -1;
+    function pintar() {
+      const y = window.scrollY;
+      const p = Math.min(1, Math.max(0, y / max));
+      if (tallo) tallo.style.setProperty("--p", p.toFixed(4));
+      let act = 0;
+      offsets.forEach((o, i) => { if (o <= y + window.innerHeight * 0.42) act = i; });
+      if (y + window.innerHeight >= document.documentElement.scrollHeight - 2) act = SECCIONES.length - 1;
+      if (act === activo) return;
+      activo = act;
+      nudos.forEach((a, i) => {
+        a.classList.toggle("es-activo", i === act);
+        a.classList.toggle("es-pasado", i < act);
+        if (i === act) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+      });
+      petalos.forEach((pt, i) => pt.classList.toggle("abierto", i <= act));
+      if (rotulo) {
+        rotulo.style.opacity = "0";
+        setTimeout(() => { rotulo.textContent = SECCIONES[act].nombre; rotulo.style.opacity = "1"; }, reduce ? 0 : 180);
+      }
+    }
+    let pendiente = false;
+    function onScroll() {
+      if (pendiente) return;
+      pendiente = true;
+      requestAnimationFrame(() => { pendiente = false; pintar(); });
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", () => { medir(); activo = -1; pintar(); });
+    window.addEventListener("load", () => { medir(); activo = -1; pintar(); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { medir(); activo = -1; pintar(); });
+    medir();
+    pintar();
+  })();
+
   /* anclas: desplazamiento suave (con Lenis si está) y cierre del menú */
   $$('a[href^="#"]').forEach((a) => {
     a.addEventListener("click", (e) => {
