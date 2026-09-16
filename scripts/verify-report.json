@@ -1,0 +1,275 @@
+{
+  "fecha": "2026-09-16T20:23:38.709Z",
+  "base": "http://127.0.0.1:8993/",
+  "total": 45,
+  "fallos": 0,
+  "resultados": [
+    {
+      "prueba": "hero: html.has-motion activo con GSAP",
+      "ok": true,
+      "detalle": null
+    },
+    {
+      "prueba": "hero: la lámina tiene 10 flores",
+      "ok": true,
+      "detalle": 10
+    },
+    {
+      "prueba": "hero: al cargar la mayoría de flores aún no se han abierto (se abren una a una)",
+      "ok": true,
+      "detalle": 9
+    },
+    {
+      "prueba": "hero: todas las flores abiertas tras ~3,5 s",
+      "ok": true,
+      "detalle": "10/10"
+    },
+    {
+      "prueba": "hero: el tallo terminó de dibujarse",
+      "ok": true,
+      "detalle": 0
+    },
+    {
+      "prueba": "hero: char-reveal del titular completado",
+      "ok": true,
+      "detalle": "5/5"
+    },
+    {
+      "prueba": "hero: CTAs visibles",
+      "ok": true,
+      "detalle": 1
+    },
+    {
+      "prueba": "hero: el h1 conserva aria-label tras dividirlo en letras",
+      "ok": true,
+      "detalle": "Ceibo"
+    },
+    {
+      "prueba": "marquee: se mueve",
+      "ok": true,
+      "detalle": null
+    },
+    {
+      "prueba": "magnetic: el CTA se desplaza con el puntero",
+      "ok": true,
+      "detalle": "matrix(1, 0, 0, 1, 18.0324, -6.6374)"
+    },
+    {
+      "prueba": "magnetic: vuelve a su sitio al salir",
+      "ok": true,
+      "detalle": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    {
+      "prueba": "cookies: el banner se muestra la primera vez",
+      "ok": true,
+      "detalle": null
+    },
+    {
+      "prueba": "cookies: el botón \"Entendido\" lo oculta de verdad",
+      "ok": true,
+      "detalle": null
+    },
+    {
+      "prueba": "cookies: no reaparece tras recargar",
+      "ok": true,
+      "detalle": null
+    },
+    {
+      "prueba": "portada: sin errores de consola",
+      "ok": true,
+      "detalle": []
+    },
+    {
+      "prueba": "pétalos: ligados al scroll (cambia al bajar, quieto si no se baja)",
+      "ok": true,
+      "detalle": {
+        "antes": 14,
+        "quieto": 14,
+        "despues": 123
+      }
+    },
+    {
+      "prueba": "separador: el tallo se dibujó",
+      "ok": true,
+      "detalle": 0
+    },
+    {
+      "prueba": "separador: la hoja brotó (scale > 0)",
+      "ok": true,
+      "detalle": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    {
+      "prueba": "carta: la rama Café tiene 6 pétalos",
+      "ok": true,
+      "detalle": 6
+    },
+    {
+      "prueba": "carta: los pétalos están en anillo (distancias al centro parecidas)",
+      "ok": true,
+      "detalle": [
+        266,
+        266,
+        266,
+        266,
+        266,
+        266
+      ]
+    },
+    {
+      "prueba": "carta: los pétalos se abrieron (opacidad 1)",
+      "ok": true,
+      "detalle": 1
+    },
+    {
+      "prueba": "carta: el centro de la rama Café es rojo",
+      "ok": true,
+      "detalle": "rgb(155, 27, 27)"
+    },
+    {
+      "prueba": "carta: la rama Matcha cambia a verde",
+      "ok": true,
+      "detalle": "rgb(126, 143, 90)"
+    },
+    {
+      "prueba": "sticky-stack: el paso 1 queda pegado bajo la cabecera",
+      "ok": true,
+      "detalle": {
+        "topA": 96,
+        "topB": 400,
+        "nav": 72,
+        "escalaA": "matrix(0.9595, 0, 0, 0.9595, 0, 0)"
+      }
+    },
+    {
+      "prueba": "sticky-stack: el paso 2 entra por debajo",
+      "ok": true,
+      "detalle": {
+        "topA": 96,
+        "topB": 400,
+        "nav": 72,
+        "escalaA": "matrix(0.9595, 0, 0, 0.9595, 0, 0)"
+      }
+    },
+    {
+      "prueba": "reseñas: el contador llega a 27",
+      "ok": true,
+      "detalle": "27"
+    },
+    {
+      "prueba": "mapa: sin iframe antes del clic",
+      "ok": true,
+      "detalle": null
+    },
+    {
+      "prueba": "mapa: el clic crea el iframe de Google Maps sin API key",
+      "ok": true,
+      "detalle": "https://www.google.com/maps?q=Ceibo%20Caf%C3%A9%20de%20especialidad%2C%20R%C3%BAa%20Cami%C3%B1o%20Novo%2018%2C%2015100%20Carballo&output=embed"
+    },
+    {
+      "prueba": "recorrido: nada se quedó invisible tras bajar toda la página",
+      "ok": true,
+      "detalle": []
+    },
+    {
+      "prueba": "recorrido: sin errores de consola",
+      "ok": true,
+      "detalle": []
+    },
+    {
+      "prueba": "reduced-motion: no se activa has-motion",
+      "ok": true,
+      "detalle": null
+    },
+    {
+      "prueba": "reduced-motion: la flor aparece ya abierta",
+      "ok": true,
+      "detalle": "10/10"
+    },
+    {
+      "prueba": "reduced-motion: nada oculto",
+      "ok": true,
+      "detalle": 0
+    },
+    {
+      "prueba": "reduced-motion: marquee parado",
+      "ok": true,
+      "detalle": "none"
+    },
+    {
+      "prueba": "reduced-motion: el contador muestra 27 directamente",
+      "ok": true,
+      "detalle": "27"
+    },
+    {
+      "prueba": "sin CDN: contenido visible y flor abierta",
+      "ok": true,
+      "detalle": {
+        "motion": false,
+        "h1": 1,
+        "flores": true,
+        "contador": "27"
+      }
+    },
+    {
+      "prueba": "sin CDN: el mapa sigue funcionando",
+      "ok": true,
+      "detalle": null
+    },
+    {
+      "prueba": "móvil 400: sin scroll horizontal",
+      "ok": true,
+      "detalle": {
+        "scroll": 400,
+        "ventana": 400
+      }
+    },
+    {
+      "prueba": "móvil 400: la rama pasa de radial a lista (pétalos uno bajo otro)",
+      "ok": true,
+      "detalle": {
+        "ordenados": true,
+        "tallos": "none",
+        "op": 1,
+        "anchoCard": 368
+      }
+    },
+    {
+      "prueba": "móvil 400: los pétalos de la lista son visibles y anchos",
+      "ok": true,
+      "detalle": {
+        "ordenados": true,
+        "tallos": "none",
+        "op": 1,
+        "anchoCard": 368
+      }
+    },
+    {
+      "prueba": "móvil 400: sigue sin scroll horizontal tras bajar",
+      "ok": true,
+      "detalle": {
+        "scroll": 400,
+        "ventana": 400
+      }
+    },
+    {
+      "prueba": "móvil 400: el menú se abre",
+      "ok": true,
+      "detalle": null
+    },
+    {
+      "prueba": "móvil 400: el enlace del menú lleva a Contacto y cierra el menú",
+      "ok": true,
+      "detalle": true
+    },
+    {
+      "prueba": "móvil: sin errores de consola",
+      "ok": true,
+      "detalle": []
+    },
+    {
+      "prueba": "rendimiento: sin tareas largas > 100 ms durante la animación de apertura (medido desde fonts.ready)",
+      "ok": true,
+      "detalle": []
+    }
+  ]
+}
