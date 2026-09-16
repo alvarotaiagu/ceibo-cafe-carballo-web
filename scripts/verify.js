@@ -177,6 +177,15 @@ const bajarDespacio = async (page, hasta) => {
     });
     ok('sticky-stack: el paso 1 queda pegado bajo la cabecera', st.topA >= st.nav && st.topA < st.nav + 60, st);
     ok('sticky-stack: el paso 2 entra por debajo', st.topB > st.topA + 40, st);
+    /* el último paso también se pega, con los tres anteriores aún apilados detrás */
+    await page.evaluate(() => {
+      const li = document.querySelector('.manana-paso:last-child');
+      const top = parseFloat(getComputedStyle(li).top);
+      window.scrollTo({ top: li.getBoundingClientRect().top + window.scrollY - top, behavior: 'instant' });
+    });
+    await page.waitForTimeout(1200);
+    const pila = await page.evaluate(() => Array.from(document.querySelectorAll('.manana-card')).map((c) => Math.round(c.getBoundingClientRect().top)));
+    ok('sticky-stack: el paso 4 se pega y los tres anteriores siguen apilados detrás', pila[3] > pila[2] && pila[2] > pila[1] && pila[1] > pila[0] && pila[0] > 60, pila);
     await page.screenshot({ path: path.join(CAPS, '06-manana-sticky.png') });
 
     /* contador */

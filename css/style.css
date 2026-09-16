@@ -314,6 +314,10 @@ figcaption { font-size: 0.72rem; color: var(--cafe-3); padding: 0.45rem 0.6rem; 
 /* el <li> es el sticky y su margin-bottom es el recorrido; nunca min-height en el li */
 .manana-paso { position: sticky; top: calc(var(--nav-h) + 1.5rem + var(--i) * 1.4rem); margin-bottom: 26vh; }
 .manana-paso:last-child { margin-bottom: 0; }
+/* recorrido tras el último paso: un margin-bottom en el último <li> se
+   colapsaría con la lista y no la alargaría; como el límite del sticky es la
+   caja de contenido de la lista, el espacio tiene que ser contenido real. */
+.manana-lista::after { content: ""; display: block; height: 28vh; }
 .manana-card {
   display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   background: var(--crema-2); border: 1px solid var(--linea); border-radius: 22px; overflow: hidden;
