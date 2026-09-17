@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-09-16T22:27:00.575Z",
+  "fecha": "2026-09-17T19:53:06.024Z",
   "base": "http://127.0.0.1:8993/",
   "total": 57,
   "fallos": 0,
@@ -17,7 +17,7 @@
     {
       "prueba": "hero: al cargar la mayoría de flores aún no se han abierto (se abren una a una)",
       "ok": true,
-      "detalle": 10
+      "detalle": 9
     },
     {
       "prueba": "hero: todas las flores abiertas tras ~3,5 s",
@@ -52,7 +52,7 @@
     {
       "prueba": "magnetic: el CTA se desplaza con el puntero",
       "ok": true,
-      "detalle": "matrix(1, 0, 0, 1, 18.0138, -6.6311)"
+      "detalle": "matrix(1, 0, 0, 1, 18.0139, -6.6314)"
     },
     {
       "prueba": "magnetic: vuelve a su sitio al salir",
@@ -171,27 +171,27 @@
       "detalle": {
         "visible": true,
         "nudos": 8,
-        "p": 0.5637,
+        "p": 0.6281,
         "activo": 4,
         "pasados": 4,
         "nombre": "Una mañana",
         "florVisible": true,
         "tops": [
           0,
-          7.96,
-          17.33,
-          44.41,
-          56.83,
-          78.85,
-          90.43,
-          97.34
+          6.68,
+          14.53,
+          52.02,
+          63.2,
+          81.67,
+          91.39,
+          97.18
         ]
       }
     },
     {
       "prueba": "indicador: el tallo ha crecido en proporción al scroll (0 < p < 1)",
       "ok": true,
-      "detalle": 0.5637
+      "detalle": 0.6281
     },
     {
       "prueba": "indicador: en \"Una mañana\" el nudo activo es el 5º, los 4 anteriores son capullos y su flor está abierta",
@@ -199,20 +199,20 @@
       "detalle": {
         "visible": true,
         "nudos": 8,
-        "p": 0.5637,
+        "p": 0.6281,
         "activo": 4,
         "pasados": 4,
         "nombre": "Una mañana",
         "florVisible": true,
         "tops": [
           0,
-          7.96,
-          17.33,
-          44.41,
-          56.83,
-          78.85,
-          90.43,
-          97.34
+          6.68,
+          14.53,
+          52.02,
+          63.2,
+          81.67,
+          91.39,
+          97.18
         ]
       }
     },
@@ -221,21 +221,21 @@
       "ok": true,
       "detalle": [
         0,
-        7.96,
-        17.33,
-        44.41,
-        56.83,
-        78.85,
-        90.43,
-        97.34
+        6.68,
+        14.53,
+        52.02,
+        63.2,
+        81.67,
+        91.39,
+        97.18
       ]
     },
     {
       "prueba": "indicador: la barra verde es un único tramo continuo cuya altura coincide con el progreso (no un guión repetido)",
       "ok": true,
       "detalle": {
-        "altoReal": 422,
-        "altoEsperado": 422,
+        "altoReal": 470,
+        "altoEsperado": 470,
         "top": 112,
         "navTop": 112
       }

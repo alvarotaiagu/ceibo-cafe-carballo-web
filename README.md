@@ -13,7 +13,7 @@ fuentes ni `js/main.js`.
 - Nombre: Ceibo · Café de especialidad. Rúa Camiño Novo, 18, 15100
   Carballo (A Coruña). Teléfono 613 97 89 23 (cableado como `tel:` en el
   FAB y en `#contacto`).
-- Google: 4,9 ★ sobre 27 reseñas, precio 1–10 € por persona. Está en el
+- Google: 4,9 ★ sobre 27 reseñas. Está en el
   hero, en `#resenas` (contador) y en el `AggregateRating` del JSON-LD.
 - Cuatro reseñas reales de Google (capturas pasadas por el usuario el
   2026-09-16), transcritas tal cual con nombres abreviados a petición del
@@ -35,11 +35,29 @@ fuentes ni `js/main.js`.
   Galegas). Se usa la de Google como provisional, marcada
   `[HORARIO A CONFIRMAR CON LA DUEÑA]` en `#contacto` y reflejada en el
   `openingHoursSpecification` del JSON-LD.
-- Tipos de producto: café de especialidad (espresso, americano, flat
-  white, latte), matcha, tés e infusiones, otras bebidas; tostas,
-  bollería, focaccia, galletas, bizcocho. **Sin nombres exactos, precios
-  ni orígenes**: cada línea de la carta lleva `[PRECIO PENDIENTE]` y las
-  ramas tienen huecos `[PRODUCTO PENDIENTE]`.
+- **Carta real** (foto de la carta de sala pasada por el usuario el
+  2026-09-17), transcrita entera y con sus precios: 49 líneas repartidas en
+  ocho grupos (Cafetería, Infusiones, Bebidas especiales calientes y frías,
+  Focaccias, Tostadas, Dulces, Opciones sin gluten, Bebidas), más los tres
+  extras de «Personalizá tu café» (leche vegetal +0,20 €, extra shot
+  +0,50 €, café invitado del mes +0,70 €) y las cuatro promos de desayuno y
+  merienda (Ceibo 9 €, Clásico 6 €, Dulce 6 €, Mixto 6,50 €). Ya no queda
+  ningún `[PRECIO PENDIENTE]` ni `[PRODUCTO PENDIENTE]`.
+  - Las tres ramas radiales muestran seis productos reales cada una; la
+    carta completa va debajo, en `.pliego`, con las mismas tres columnas
+    que la carta impresa (cafetería / bebidas especiales / para comer).
+  - De la carta salen además cuatro datos que antes no estaban: los sellos
+    **café de especialidad · opciones sin gluten · pet friendly** y el
+    **«pide y retira en la barra»** (en `#carta` y en `#contacto`), los
+    **tostadores seleccionados que rotan cada mes** (sostiene el principio
+    de trazabilidad en `#especialidad`, sin nombrar ningún origen
+    concreto) y el proveedor real de los *cinnamon rolls* (Zuccaro).
+  - Rango de precios recalculado: de 1,50 € (espresso, agua) a 9 €
+    (Promo Ceibo). Sustituye al «1–10 €» de Google en `#contacto` y en el
+    `priceRange` del JSON-LD, que además gana `hasMenu` y `petsAllowed`.
+  - Lo que sigue rotando (vitrina, infusión del mes, iced tea del día, café
+    invitado del mes) se dice como tal al pie de la carta, sin inventar
+    cuál es en cada momento.
 
 ## Lo que NO se recibió y no se inventó (placeholders visibles)
 
@@ -48,8 +66,9 @@ fuentes ni `js/main.js`.
   previsto para UNA línea de origen si el cliente lo confirma; a fecha de
   entrega el origen argentino es plausible pero **no confirmado** y el
   sitio no lo menciona.
-- Carta real (productos, precios, orígenes, tuestes, notas de cata) →
-  está en el destacado "Carta" de Instagram, no accesible.
+- Orígenes, fincas, tuestes y notas de cata de cada café → la carta de
+  sala no los lista (solo dice que los tostadores rotan cada mes); no se
+  inventa ninguno.
 - Wifi, reservas, pedidos para llevar, proveedor de café, equipo → no se
   anuncian; `#contacto` lo dice explícitamente.
 - Feed de Instagram → 6 huecos: 4 con fotos reales que pasó el cliente y 2
@@ -82,6 +101,12 @@ repetido: el motivo del sitio es la flor.
   finos en SVG; al entrar en pantalla el centro aparece, los tallos se
   dibujan y los pétalos se abren con stagger radial. La rama Matcha cambia
   `--acento` a verde. Por debajo de 760 px pasa a lista.
+- **Pliego de la carta completa** (`.pliego`): tres columnas *explícitas*
+  en grid (una por `div.pliego-col`), no `columns` CSS. Con columnas
+  automáticas el balanceo abría huecos de 200 px entre grupos tan
+  dispares; además `.grupo` es un `<section>` y hereda el `padding` global
+  de `section`, así que lo anula. 3 → 2 columnas a 1100 px, 1 columna a
+  760 px.
 - **Separadores**: tallo vertical con una hoja que se dibuja/brota con
   scrub (`.tallo-sep`).
 - **Una mañana en Ceibo**: sticky-stack de cuatro pasos (el `<li>` es el

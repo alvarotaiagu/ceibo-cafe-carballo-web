@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ceibo · Café de especialidad en Carballo</title>
-<meta name="description" content="Ceibo, café de especialidad en la Rúa Camiño Novo de Carballo (A Coruña): espresso, flat white, matcha, tés, tostas y bollería. Abierto desde mayo de 2026. 4,9 ★ en Google.">
+<meta name="description" content="Ceibo, café de especialidad en la Rúa Camiño Novo de Carballo (A Coruña). Carta con precios: espresso 1,50 €, flat white 2,20 €, matcha latte 2,80 €, focaccias 7,50 € y promos de desayuno desde 6 €. Opciones sin gluten y pet friendly.">
 <link rel="canonical" href="https://alvarotaiagu.github.io/ceibo-cafe-carballo-web/">
 <link rel="icon" href="assets/img/brand/ceibo-marca.svg" type="image/svg+xml">
 <link rel="icon" href="assets/img/brand/icon-96.png" type="image/png" sizes="96x96">
@@ -17,7 +17,7 @@
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="Ceibo · Café de especialidad">
 <meta property="og:title" content="Ceibo · Café de especialidad en Carballo">
-<meta property="og:description" content="Café de especialidad, matcha, tés y desayunos en la Rúa Camiño Novo, 18. Abierto desde el 1 de mayo de 2026. 4,9 ★ · 27 reseñas.">
+<meta property="og:description" content="Café de especialidad, matcha, chai y focaccias en la Rúa Camiño Novo, 18. Carta completa con precios y promos de desayuno desde 6 €. 4,9 ★ · 27 reseñas.">
 <meta property="og:url" content="https://alvarotaiagu.github.io/ceibo-cafe-carballo-web/">
 <meta property="og:image" content="https://alvarotaiagu.github.io/ceibo-cafe-carballo-web/assets/img/og-ceibo.jpg">
 <meta property="og:image:width" content="1200">
@@ -33,8 +33,10 @@
   "image": "https://alvarotaiagu.github.io/ceibo-cafe-carballo-web/assets/img/og-ceibo.jpg",
   "logo": "https://alvarotaiagu.github.io/ceibo-cafe-carballo-web/assets/img/brand/icon-512.png",
   "telephone": "+34613978923",
-  "priceRange": "1–10 €",
-  "servesCuisine": "Café de especialidad, matcha, desayunos",
+  "priceRange": "1,50–9 €",
+  "servesCuisine": "Café de especialidad, matcha, desayunos y meriendas",
+  "hasMenu": "https://alvarotaiagu.github.io/ceibo-cafe-carballo-web/#carta",
+  "petsAllowed": true,
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Rúa Camiño Novo, 18",
@@ -126,8 +128,8 @@
 <!-- ============ MARQUEE ============ -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-pista">
-    <span>flat white</span><span>·</span><span>matcha</span><span>·</span><span>latte</span><span>·</span><span>focaccia</span><span>·</span><span>espresso</span><span>·</span><span>bizcocho</span><span>·</span><span>té e infusiones</span><span>·</span><span>americano</span><span>·</span><span>galletas</span><span>·</span><span>tostas</span><span>·</span><span>bollería</span><span>·</span>
-    <span>flat white</span><span>·</span><span>matcha</span><span>·</span><span>latte</span><span>·</span><span>focaccia</span><span>·</span><span>espresso</span><span>·</span><span>bizcocho</span><span>·</span><span>té e infusiones</span><span>·</span><span>americano</span><span>·</span><span>galletas</span><span>·</span><span>tostas</span><span>·</span><span>bollería</span><span>·</span>
+    <span>espresso 1,50 €</span><span>·</span><span>flat white</span><span>·</span><span>matcha latte</span><span>·</span><span>chai latte</span><span>·</span><span>pink latte</span><span>·</span><span>focaccia</span><span>·</span><span>cold brew</span><span>·</span><span>espresso tonic</span><span>·</span><span>affogato</span><span>·</span><span>tostada porteña</span><span>·</span><span>medialuna</span><span>·</span><span>sin gluten</span><span>·</span>
+    <span>espresso 1,50 €</span><span>·</span><span>flat white</span><span>·</span><span>matcha latte</span><span>·</span><span>chai latte</span><span>·</span><span>pink latte</span><span>·</span><span>focaccia</span><span>·</span><span>cold brew</span><span>·</span><span>espresso tonic</span><span>·</span><span>affogato</span><span>·</span><span>tostada porteña</span><span>·</span><span>medialuna</span><span>·</span><span>sin gluten</span><span>·</span>
   </div>
 </div>
 
@@ -174,7 +176,13 @@
   <div class="carta-cabeza">
     <p class="eyebrow" data-reveal>La carta</p>
     <h2 class="titulo-xl" id="carta-titulo" data-split-char>Tres ramas, y en cada rama sus pétalos</h2>
-    <p class="carta-nota" data-reveal>La carta completa, con los productos exactos, los precios y el origen de cada café, está en el destacado «Carta» del Instagram de Ceibo. Aquí, las tres ramas con lo que hay confirmado. <span class="pendiente-inline">[PRODUCTOS Y PRECIOS PENDIENTES DE LA CARTA REAL]</span></p>
+    <p class="carta-nota" data-reveal>Esta es la carta de sala de Ceibo, con sus precios. Primero las tres ramas con lo más pedido; debajo, la carta entera. En la vitrina suele haber más cosas de las que caben aquí.</p>
+    <ul class="sellos" data-reveal>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="12" rx="6.5" ry="9" transform="rotate(30 12 12)"/><path d="M8.5 5.5C13 9 13 15 15.5 18.5"/></svg>Café de especialidad</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V9"/><path d="M12 13c-3 0-5-2-5-5 3 0 5 2 5 5Zm0-3c0-3 2-5 5-5 0 3-2 5-5 5Z"/><path d="M4 4l16 16"/></svg>Opciones sin gluten</li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="7" cy="9" rx="2" ry="2.6"/><ellipse cx="12" cy="7" rx="2" ry="2.6"/><ellipse cx="17" cy="9" rx="2" ry="2.6"/><path d="M12 12c3 0 5.5 2.4 5.5 5 0 1.7-1.5 2.6-3 2-0.9-.4-2-.4-2.5-.4s-1.6 0-2.5.4c-1.5.6-3-.3-3-2 0-2.6 2.5-5 5.5-5Z"/></svg>Pet friendly</li>
+      <li class="sellos--barra"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5Z"/><path d="M17 11h2.2a2.4 2.4 0 0 1 0 4.8H17"/><path d="M3 21h16"/></svg>Pide y retira en la barra</li>
+    </ul>
   </div>
 
   <div class="ramas">
@@ -186,16 +194,16 @@
         </svg>
         <div class="rama-centro">
           <p class="rama-num">I</p>
-          <h3 class="rama-nombre" id="rama-cafe">Café</h3>
-          <p class="rama-desc">De especialidad, tostado reciente.</p>
+          <h3 class="rama-nombre" id="rama-cafe">Cafetería</h3>
+          <p class="rama-desc">Café de especialidad, tostado reciente.</p>
         </div>
         <ul class="rama-petalos">
-          <li style="--a:-90deg"><div class="petalo-card"><em>Espresso</em><span>[PRECIO PENDIENTE]</span></div></li>
-          <li style="--a:-30deg"><div class="petalo-card"><em>Americano</em><span>[PRECIO PENDIENTE]</span></div></li>
-          <li style="--a:30deg"><div class="petalo-card"><em>Flat white</em><span>[PRECIO PENDIENTE]</span></div></li>
-          <li style="--a:90deg"><div class="petalo-card"><em>Latte</em><span>[PRECIO PENDIENTE]</span></div></li>
-          <li style="--a:150deg"><div class="petalo-card petalo-card--vacio"><em>[PRODUCTO PENDIENTE]</em><span>[PRECIO PENDIENTE]</span></div></li>
-          <li style="--a:210deg"><div class="petalo-card petalo-card--vacio"><em>[PRODUCTO PENDIENTE]</em><span>[PRECIO PENDIENTE]</span></div></li>
+          <li style="--a:-90deg"><div class="petalo-card"><em>Espresso</em><span>1,50&nbsp;€</span></div></li>
+          <li style="--a:-30deg"><div class="petalo-card"><em>Americano</em><span>1,60&nbsp;€</span></div></li>
+          <li style="--a:30deg"><div class="petalo-card"><em>Café con leche</em><span>1,60&nbsp;€</span></div></li>
+          <li style="--a:90deg"><div class="petalo-card"><em>Cappuccino</em><span>1,80&nbsp;€</span></div></li>
+          <li style="--a:150deg"><div class="petalo-card"><em>Flat White</em><span>2,20&nbsp;€</span></div></li>
+          <li style="--a:210deg"><div class="petalo-card"><em>Infusiones</em><span>1,80&nbsp;€</span></div></li>
         </ul>
       </div>
     </article>
@@ -207,16 +215,16 @@
         </svg>
         <div class="rama-centro">
           <p class="rama-num">II</p>
-          <h3 class="rama-nombre" id="rama-matcha">Matcha y tés</h3>
-          <p class="rama-desc">La rama verde de la carta.</p>
+          <h3 class="rama-nombre" id="rama-matcha">Bebidas especiales</h3>
+          <p class="rama-desc">Matcha, chai y pink latte. Calientes y frías.</p>
         </div>
         <ul class="rama-petalos">
-          <li style="--a:-90deg"><div class="petalo-card"><em>Matcha</em><span>[PRECIO PENDIENTE]</span></div></li>
-          <li style="--a:-30deg"><div class="petalo-card"><em>Tés</em><span>[PRECIO PENDIENTE]</span></div></li>
-          <li style="--a:30deg"><div class="petalo-card"><em>Infusiones</em><span>[PRECIO PENDIENTE]</span></div></li>
-          <li style="--a:90deg"><div class="petalo-card"><em>Otras bebidas</em><span>[PRECIO PENDIENTE]</span></div></li>
-          <li style="--a:150deg"><div class="petalo-card petalo-card--vacio"><em>[PRODUCTO PENDIENTE]</em><span>[PRECIO PENDIENTE]</span></div></li>
-          <li style="--a:210deg"><div class="petalo-card petalo-card--vacio"><em>[PRODUCTO PENDIENTE]</em><span>[PRECIO PENDIENTE]</span></div></li>
+          <li style="--a:-90deg"><div class="petalo-card"><em>Matcha latte</em><span>2,80&nbsp;€</span></div></li>
+          <li style="--a:-30deg"><div class="petalo-card"><em>Chai latte</em><span>2,70&nbsp;€</span></div></li>
+          <li style="--a:30deg"><div class="petalo-card"><em>Pink latte</em><span>2,80&nbsp;€</span></div></li>
+          <li style="--a:90deg"><div class="petalo-card"><em>Matcha ceremonial</em><span>3,50&nbsp;€</span></div></li>
+          <li style="--a:150deg"><div class="petalo-card"><em>Cold brew</em><span>3,00&nbsp;€</span></div></li>
+          <li style="--a:210deg"><div class="petalo-card"><em>Espresso tonic</em><span>3,50&nbsp;€</span></div></li>
         </ul>
       </div>
     </article>
@@ -228,20 +236,183 @@
         </svg>
         <div class="rama-centro">
           <p class="rama-num">III</p>
-          <h3 class="rama-nombre" id="rama-picar">Para desayunar y merendar</h3>
-          <p class="rama-desc">Dulce y salado, a cualquier hora.</p>
+          <h3 class="rama-nombre" id="rama-picar">Para comer</h3>
+          <p class="rama-desc">Focaccias, tostadas y dulces, a cualquier hora.</p>
         </div>
         <ul class="rama-petalos">
-          <li style="--a:-90deg"><div class="petalo-card"><em>Tostas</em><span>[PRECIO PENDIENTE]</span></div></li>
-          <li style="--a:-30deg"><div class="petalo-card"><em>Bollería</em><span>[PRECIO PENDIENTE]</span></div></li>
-          <li style="--a:30deg"><div class="petalo-card"><em>Focaccia</em><span>[PRECIO PENDIENTE]</span></div></li>
-          <li style="--a:90deg"><div class="petalo-card"><em>Galletas</em><span>[PRECIO PENDIENTE]</span></div></li>
-          <li style="--a:150deg"><div class="petalo-card"><em>Bizcocho</em><span>[PRECIO PENDIENTE]</span></div></li>
-          <li style="--a:210deg"><div class="petalo-card petalo-card--vacio"><em>[PRODUCTO PENDIENTE]</em><span>[PRECIO PENDIENTE]</span></div></li>
+          <li style="--a:-90deg"><div class="petalo-card"><em>Focaccias</em><span>7,50&nbsp;€</span></div></li>
+          <li style="--a:-30deg"><div class="petalo-card"><em>Tostada clásica</em><span>2,50&nbsp;€</span></div></li>
+          <li style="--a:30deg"><div class="petalo-card"><em>Tostada porteña</em><span>3,00&nbsp;€</span></div></li>
+          <li style="--a:90deg"><div class="petalo-card"><em>Bizcocho casero</em><span>3,00&nbsp;€</span></div></li>
+          <li style="--a:150deg"><div class="petalo-card"><em>Croissant</em><span>1,80&nbsp;€</span></div></li>
+          <li style="--a:210deg"><div class="petalo-card"><em>Medialuna argentina</em><span>1,60&nbsp;€</span></div></li>
         </ul>
       </div>
     </article>
 
+  </div>
+
+  <!-- ---------- Promos de desayuno y merienda ---------- -->
+  <div class="promos" id="promos">
+    <div class="promos-cabeza">
+      <p class="eyebrow" data-reveal>Promos</p>
+      <h3 class="titulo-lg" data-reveal>Desayunos y meriendas</h3>
+      <p class="carta-nota" data-reveal>Las cuatro promos llevan <strong>café con leche o infusión</strong> y <strong>limonada artesanal</strong>.</p>
+    </div>
+    <ul class="promos-lista">
+      <li class="promo promo--destacada" data-reveal>
+        <h4 class="promo-nombre">Promo Ceibo</h4>
+        <p class="promo-detalle">Focaccia a elección + café con leche o infusión + limonada artesanal</p>
+        <p class="promo-precio">9&nbsp;€</p>
+      </li>
+      <li class="promo" data-reveal>
+        <h4 class="promo-nombre">Promo Clásico</h4>
+        <p class="promo-detalle">Tostada a elección + café con leche o infusión + limonada artesanal</p>
+        <p class="promo-precio">6&nbsp;€</p>
+      </li>
+      <li class="promo" data-reveal>
+        <h4 class="promo-nombre">Promo Dulce</h4>
+        <p class="promo-detalle">Bizcocho a elección + café con leche o infusión + limonada artesanal</p>
+        <p class="promo-precio">6&nbsp;€</p>
+      </li>
+      <li class="promo" data-reveal>
+        <h4 class="promo-nombre">Promo Mixto</h4>
+        <p class="promo-detalle">Croissant con jamón y queso + café con leche o infusión + limonada artesanal</p>
+        <p class="promo-precio">6,50&nbsp;€</p>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ---------- Carta completa ---------- -->
+  <div class="carta-completa">
+    <div class="completa-cabeza">
+      <p class="eyebrow" data-reveal>Carta completa</p>
+      <h3 class="titulo-lg" data-reveal>Todo lo que hay, con su precio</h3>
+    </div>
+
+    <div class="pliego">
+      <div class="pliego-col">
+        <section class="grupo" data-reveal aria-labelledby="g-cafeteria">
+          <h4 class="grupo-titulo" id="g-cafeteria">Cafetería</h4>
+          <ul class="lista">
+            <li><p class="item"><span class="item-nombre">Espresso</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">1,50&nbsp;€</span></p><p class="item-desc">Café intenso y corto</p></li>
+            <li><p class="item"><span class="item-nombre">Americano</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">1,60&nbsp;€</span></p><p class="item-desc">Espresso alargado con agua caliente</p></li>
+            <li><p class="item"><span class="item-nombre">Café con leche</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">1,60&nbsp;€</span></p><p class="item-desc">Espresso con leche caliente</p></li>
+            <li><p class="item"><span class="item-nombre">Latte</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">1,80&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Latte XL</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">2,00&nbsp;€</span></p><p class="item-desc">Espresso con más leche caliente y cremosa</p></li>
+            <li><p class="item"><span class="item-nombre">Cappuccino</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">1,80&nbsp;€</span></p><p class="item-desc">Espresso + leche cremosa (canela y cacao opcional)</p></li>
+            <li><p class="item"><span class="item-nombre">Flat White</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">2,20&nbsp;€</span></p><p class="item-desc">Doble espresso + leche de textura sedosa</p></li>
+            <li><p class="item"><span class="item-nombre">ColaCao</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">2,00&nbsp;€</span></p></li>
+          </ul>
+        </section>
+        <section class="grupo" data-reveal aria-labelledby="g-infusiones">
+          <h4 class="grupo-titulo" id="g-infusiones">Infusiones</h4>
+          <p class="grupo-nota">Todas, 1,80&nbsp;€</p>
+          <ul class="lista">
+            <li><p class="item"><span class="item-nombre">Té negro earl grey</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">1,80&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Té verde</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">1,80&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Rooibos vainilla</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">1,80&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Frutos del bosque</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">1,80&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Infusión del mes</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">1,80&nbsp;€</span></p></li>
+          </ul>
+          <div class="extras">
+            <p class="extras-titulo">Personalizá tu café</p>
+            <ul class="extras-lista">
+              <li><span>Leche vegetal</span><span>+0,20&nbsp;€</span></li>
+              <li><span>Extra shot de espresso</span><span>+0,50&nbsp;€</span></li>
+              <li><span>Café invitado del mes</span><span>+0,70&nbsp;€</span></li>
+            </ul>
+            <p class="extras-nota">Tostadores seleccionados que rotan cada mes.</p>
+          </div>
+        </section>
+        <section class="grupo" data-reveal aria-labelledby="g-bebidas">
+          <h4 class="grupo-titulo" id="g-bebidas">Bebidas</h4>
+          <ul class="lista">
+            <li><p class="item"><span class="item-nombre">Caña</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">2,50&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Zumo Granini</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">2,50&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Coca-Cola, Coca-Cola Zero o tónica</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">2,50&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Agua o agua con gas</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">1,50&nbsp;€</span></p></li>
+          </ul>
+        </section>
+      </div>
+      <div class="pliego-col">
+        <section class="grupo grupo--verde" data-reveal aria-labelledby="g-calientes">
+          <h4 class="grupo-titulo" id="g-calientes">Bebidas especiales <span class="grupo-marca">calientes</span></h4>
+          <ul class="lista">
+            <li><p class="item"><span class="item-nombre">Matcha latte</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">2,80&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Matcha latte vainilla</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,00&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Chai latte (PRANA)</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">2,70&nbsp;€</span></p><p class="item-desc">Mezcla artesanal equilibrada de té negro, especias frescas y miel natural; notas de canela, clavo y jengibre</p></li>
+            <li><p class="item"><span class="item-nombre">Pink latte</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">2,80&nbsp;€</span></p><p class="item-desc">Mix soluble de frutos rojos y remolacha, sin teína</p></li>
+          </ul>
+          <p class="lista-sub">Con café</p>
+          <ul class="lista">
+            <li><p class="item"><span class="item-nombre">Latte especial</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,00&nbsp;€</span></p><p class="item-desc">Elige entre sirope de vainilla, coco o caramelo</p></li>
+            <li><p class="item"><span class="item-nombre">Mokaccino</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,00&nbsp;€</span></p><p class="item-desc">Base de cacao puro artesanal km&nbsp;0 + espresso + leche cremosa</p></li>
+            <li><p class="item"><span class="item-nombre">Café bombón</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,00&nbsp;€</span></p><p class="item-desc">Leche condensada + espresso + nata montada</p></li>
+          </ul>
+        </section>
+        <section class="grupo grupo--verde" data-reveal aria-labelledby="g-frias">
+          <h4 class="grupo-titulo" id="g-frias">Bebidas especiales <span class="grupo-marca">frías</span></h4>
+          <ul class="lista">
+            <li><p class="item"><span class="item-nombre">Matcha tropic</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,50&nbsp;€</span></p><p class="item-desc">Matcha ceremonial con base de mango y maracuyá</p></li>
+            <li><p class="item"><span class="item-nombre">Matcha fresa</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,50&nbsp;€</span></p><p class="item-desc">Matcha ceremonial con base de puré de fresa</p></li>
+            <li><p class="item"><span class="item-nombre">Matcha vainilla</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,50&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Matcha ceremonial</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,50&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Pink latte</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,50&nbsp;€</span></p><p class="item-desc">Clásico pink latte + base de reducción de frutos rojos</p></li>
+            <li><p class="item"><span class="item-nombre">Iced tea del día</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,00&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Iced chai latte</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,50&nbsp;€</span></p></li>
+          </ul>
+          <p class="lista-sub">Con café</p>
+          <ul class="lista">
+            <li><p class="item"><span class="item-nombre">Iced latte</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,00&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Iced latte especial</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,50&nbsp;€</span></p><p class="item-desc">Elige sirope de vainilla, coco, caramelo o chocolate</p></li>
+            <li><p class="item"><span class="item-nombre">Cold brew</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,00&nbsp;€</span></p><p class="item-desc">Café infusionado en frío durante 12 a 24 horas</p></li>
+            <li><p class="item"><span class="item-nombre">Espresso tonic</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,50&nbsp;€</span></p><p class="item-desc">Doble espresso servido sobre base de tónica</p></li>
+            <li><p class="item"><span class="item-nombre">Affogato</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">4,00&nbsp;€</span></p><p class="item-desc">Espresso servido sobre bola de helado artesanal</p></li>
+          </ul>
+        </section>
+      </div>
+      <div class="pliego-col">
+        <section class="grupo" data-reveal aria-labelledby="g-focaccias">
+          <h4 class="grupo-titulo" id="g-focaccias">Focaccias</h4>
+          <p class="grupo-nota">Las tres, 7,50&nbsp;€</p>
+          <ul class="lista">
+            <li><p class="item"><span class="item-nombre">Cremosa y pistachera</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">7,50&nbsp;€</span></p><p class="item-desc">Mortadela, mozzarella fresca, pesto, pistacho y hojas verdes</p></li>
+            <li><p class="item"><span class="item-nombre">Serrana</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">7,50&nbsp;€</span></p><p class="item-desc">Jamón serrano, tomate, grana padano, rúcula, queso crema y AOVE</p></li>
+            <li><p class="item"><span class="item-nombre">Veggie</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">7,50&nbsp;€</span></p><p class="item-desc">Champiñones salteados, hummus, pimientos asados, hojas verdes y AOVE</p></li>
+          </ul>
+        </section>
+        <section class="grupo" data-reveal aria-labelledby="g-tostadas">
+          <h4 class="grupo-titulo" id="g-tostadas">Tostadas</h4>
+          <ul class="lista">
+            <li><p class="item"><span class="item-nombre">Clásica</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">2,50&nbsp;€</span></p><p class="item-desc">Mantequilla y mermelada, o queso crema y mermelada</p></li>
+            <li><p class="item"><span class="item-nombre">Tomate y aceite</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">2,50&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Porteña</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,00&nbsp;€</span></p><p class="item-desc">Dulce de leche y mantequilla</p></li>
+          </ul>
+          <h4 class="grupo-titulo grupo-titulo--seguido">Dulces</h4>
+          <ul class="lista">
+            <li><p class="item"><span class="item-nombre">Bizcocho casero</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,00&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Croissant</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">1,80&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Medialuna argentina</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">1,60&nbsp;€</span></p></li>
+          </ul>
+        </section>
+        <section class="grupo grupo--verde" data-reveal aria-labelledby="g-singluten">
+          <h4 class="grupo-titulo" id="g-singluten">Opciones sin gluten</h4>
+          <ul class="lista">
+            <li><p class="item"><span class="item-nombre">Bica</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,00&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Bizcocho con chispas</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,00&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Brownie</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">3,00&nbsp;€</span></p></li>
+            <li><p class="item"><span class="item-nombre">Magdalenas (6&nbsp;unidades)</span><span class="item-guia" aria-hidden="true"></span><span class="item-precio">6,50&nbsp;€</span></p></li>
+          </ul>
+          <div class="extras">
+            <p class="extras-titulo">Otras opciones</p>
+            <p class="extras-texto">Cookies, brownies y <em>cinnamon rolls</em> by Zuccaro. Y mucho más, disponible en la vitrina.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <p class="carta-pie" data-reveal>Precios de la carta de sala de septiembre de 2026. La vitrina y la infusión, el <em>iced tea</em> y el café invitado del mes cambian cada semana: pregunta en la barra.</p>
   </div>
 
   <div class="carta-fotos">
@@ -265,7 +436,7 @@
     <li data-reveal>
       <svg class="principio-icono" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 42c-8-6-14-12-14-20a14 14 0 0 1 28 0c0 8-6 14-14 20Z"/><path d="M24 12v20M14 22c6 2 14 2 20 0"/></svg>
       <h3>Trazabilidad</h3>
-      <p>Se sabe de dónde viene cada café (región, finca o cooperativa) y quién lo tostó. La carta lo dice; aquí no inventamos ningún origen.</p>
+      <p>Se sabe de dónde viene cada café y quién lo tostó. En Ceibo los tostadores son <strong>seleccionados y rotan cada mes</strong>: por eso hay un «café invitado del mes» (+0,70 €). Cuál es en cada momento se pregunta en la barra; aquí no inventamos ningún origen.</p>
     </li>
     <li data-reveal>
       <svg class="principio-icono" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="16"/><path d="M24 12v12l8 5"/></svg>
@@ -275,7 +446,7 @@
     <li data-reveal>
       <svg class="principio-icono" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 18h24v10a8 8 0 0 1-8 8h-8a8 8 0 0 1-8-8Z"/><path d="M34 22h3a4 4 0 0 1 0 8h-3M8 42h30"/></svg>
       <h3>Preparación cuidada</h3>
-      <p>Molienda al momento, dosis medida y agua a su temperatura. Cada bebida se prepara como pide: corta, larga o con leche texturizada.</p>
+      <p>Molienda al momento, dosis medida y agua a su temperatura. Y si lo quieres más intenso, más suave o más caliente, se adapta: basta con decirlo al pedir.</p>
     </li>
   </ol>
   <div class="esp-bebidas">
@@ -283,12 +454,23 @@
       <img src="assets/img/photos/taza2-900.jpg" srcset="assets/img/photos/taza2-900.jpg 900w, assets/img/photos/taza2-1400.jpg 1400w" sizes="(max-width: 900px) 100vw, 45vw" alt="Taza pequeña de café sobre mármol claro, vista desde arriba" loading="lazy" width="900" height="900">
       <figcaption>Foto de archivo (Pexels) · no es de Ceibo</figcaption>
     </figure>
-    <dl class="bebidas" data-reveal>
-      <div><dt><em>Espresso</em></dt><dd>Corto e intenso. La base de todo lo demás.</dd></div>
-      <div><dt><em>Americano</em></dt><dd>Espresso alargado con agua caliente. Suave y largo.</dd></div>
-      <div><dt><em>Flat white</em></dt><dd>Doble espresso con leche texturizada y poca espuma.</dd></div>
-      <div><dt><em>Latte</em></dt><dd>Más leche, más suave; para las mañanas sin prisa.</dd></div>
-    </dl>
+    <div class="esp-lado" data-reveal>
+      <dl class="bebidas">
+        <div><dt><em>Espresso</em> <span class="dt-precio">1,50 €</span></dt><dd>Café intenso y corto. La base de todo lo demás.</dd></div>
+        <div><dt><em>Americano</em> <span class="dt-precio">1,60 €</span></dt><dd>Espresso alargado con agua caliente.</dd></div>
+        <div><dt><em>Cappuccino</em> <span class="dt-precio">1,80 €</span></dt><dd>Espresso y leche cremosa, con canela y cacao si quieres.</dd></div>
+        <div><dt><em>Flat White</em> <span class="dt-precio">2,20 €</span></dt><dd>Doble espresso y leche de textura sedosa.</dd></div>
+      </dl>
+      <div class="esp-personaliza">
+        <p class="esp-personaliza-titulo">Personalizá tu café</p>
+        <ul>
+          <li><span>Leche vegetal</span><span>+0,20 €</span></li>
+          <li><span>Extra shot de espresso</span><span>+0,50 €</span></li>
+          <li><span>Café invitado del mes</span><span>+0,70 €</span></li>
+        </ul>
+      </div>
+      <blockquote class="esp-cita">Trabajamos con recetas de café de especialidad. Si lo quieres más intenso, suave o más caliente, dínoslo y lo adaptamos.<cite>La carta de Ceibo</cite></blockquote>
+    </div>
   </div>
 </section>
 
@@ -305,13 +487,13 @@
     <li class="manana-paso" style="--i:0">
       <article class="manana-card">
         <figure><img src="assets/img/photos/local-382.jpg" alt="Interior de Ceibo: barra con el rótulo, mesas blancas y sillas de rejilla" loading="lazy" width="382" height="509"><figcaption>Foto real del local (ficha de Google)</figcaption></figure>
-        <div class="manana-texto"><p class="manana-num">01</p><h3>Llegas</h3><p>La puerta de la Rúa Camiño Novo, la luz de primera hora y el olor a café recién molido. Barra clara, madera, poco ruido.</p></div>
+        <div class="manana-texto"><p class="manana-num">01</p><h3>Llegas</h3><p>La puerta de la Rúa Camiño Novo, la luz de primera hora y el olor a café recién molido. Barra clara, madera, poco ruido. Puedes entrar con tu perro.</p></div>
       </article>
     </li>
     <li class="manana-paso" style="--i:1">
       <article class="manana-card">
         <figure><img src="assets/img/photos/vasos1-900.jpg" alt="Tres vasos de Ceibo con el logo: una bebida rosa y dos matchas con hielo" loading="lazy" width="900" height="1125"><figcaption>Foto real de Ceibo (@ceibocafe_)</figcaption></figure>
-        <div class="manana-texto"><p class="manana-num">02</p><h3>Eliges</h3><p>Un espresso o un flat white. Un matcha con hielo. Una tosta o un trozo de focaccia. O lo que te apetezca ese día: la carta no es larga, es cuidada.</p></div>
+        <div class="manana-texto"><p class="manana-num">02</p><h3>Eliges</h3><p>Un espresso de 1,50 € o un flat white. Un matcha con hielo, un chai o un cold brew. Una tostada porteña con dulce de leche, o una focaccia. Pides y retiras en la barra.</p></div>
       </article>
     </li>
     <li class="manana-paso" style="--i:2">
@@ -323,7 +505,7 @@
     <li class="manana-paso" style="--i:3">
       <article class="manana-card">
         <figure><img src="assets/img/photos/bizcocho-900.jpg" alt="Porción de bizcocho de chocolate en un plato claro con luz de mañana" loading="lazy" width="900" height="675"><figcaption>Foto de archivo (Pexels) · no es de Ceibo</figcaption></figure>
-        <div class="manana-texto"><p class="manana-num">04</p><h3>Vuelves</h3><p>Porque la mañana empezó bien. Y porque queda por probar el bizcocho, o la rama verde de la carta.</p></div>
+        <div class="manana-texto"><p class="manana-num">04</p><h3>Vuelves</h3><p>Porque la mañana empezó bien. Y porque queda por probar la Promo Ceibo, el affogato o la bica sin gluten de la vitrina.</p></div>
       </article>
     </li>
   </ol>
@@ -358,7 +540,7 @@
   <div class="ig-cabeza">
     <p class="eyebrow" data-reveal>Instagram</p>
     <h2 class="titulo-lg" id="ig-titulo" data-split-char>@ceibocafe_</h2>
-    <p class="carta-nota" data-reveal>1.092 seguidores. Las novedades, los horarios de cada semana y el destacado «Carta» están allí. <span class="pendiente-inline">[HUECOS DEL FEED: 4 fotos reales pasadas por el cliente + 2 pendientes]</span></p>
+    <p class="carta-nota" data-reveal>1.092 seguidores. La carta con precios ya está arriba; en Instagram están las novedades de la vitrina, el café invitado del mes y los horarios de cada semana. <span class="pendiente-inline">[HUECOS DEL FEED: 4 fotos reales pasadas por el cliente + 2 pendientes]</span></p>
     <p data-reveal><a class="btn btn--rojo" data-magnetic href="https://www.instagram.com/ceibocafe_/" target="_blank" rel="noopener">Seguir a Ceibo</a></p>
   </div>
   <ul class="ig-feed">
@@ -386,7 +568,8 @@
         <p><strong>Ceibo · Café de especialidad</strong><br>Rúa Camiño Novo, 18<br>15100 Carballo, A Coruña</p>
         <p><a class="tel" href="tel:+34613978923">613 97 89 23</a></p>
         <p><a href="https://www.instagram.com/ceibocafe_/" target="_blank" rel="noopener">@ceibocafe_</a></p>
-        <p class="precio">Precio por persona: 1–10 €</p>
+        <p class="precio">Carta de 1,50 € (espresso, agua) a 9 € (Promo Ceibo)</p>
+        <p class="precio">Pide y retira en la barra</p>
       </address>
       <div class="horario">
         <p class="horario-rotulo">Horario <span class="pendiente-inline">[HORARIO A CONFIRMAR CON LA DUEÑA]</span></p>
@@ -400,6 +583,11 @@
         </table>
         <p class="horario-nota">Hay tres versiones del horario publicadas (Google, Instagram y Páxinas Galegas); esta es la de Google, provisional.</p>
       </div>
+      <ul class="contacto-sellos">
+        <li>Café de especialidad</li>
+        <li>Opciones sin gluten</li>
+        <li>Pet friendly</li>
+      </ul>
       <p class="contacto-pendientes"><span class="pendiente-inline">[PENDIENTE]</span> wifi · reservas · pedidos para llevar: sin confirmar, no se anuncian.</p>
     </div>
     <div class="mapa" data-reveal>

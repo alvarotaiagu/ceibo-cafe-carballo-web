@@ -336,6 +336,108 @@ html.has-motion .petalo-card { opacity: 0; transform: scale(0.4); }
 figcaption { font-size: 0.72rem; color: var(--cafe-3); padding: 0.45rem 0.6rem; }
 .carta-fotos figure:first-child img { aspect-ratio: 4 / 3; }
 
+/* ---------- Sellos de la carta (especialidad · sin gluten · pet friendly · barra) ---------- */
+.sellos { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.6rem; }
+.sellos li {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  border: 1px solid var(--linea); border-radius: 999px;
+  padding: 0.4rem 0.9rem 0.4rem 0.7rem;
+  font-size: 0.82rem; font-weight: 600; color: var(--cafe-2);
+  background: var(--crema-2);
+}
+.sellos svg { width: 18px; height: 18px; flex: none; fill: none; stroke: var(--matcha-2); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.sellos--barra { border-color: rgba(155, 27, 27, 0.4); color: var(--rojo); background: rgba(155, 27, 27, 0.05); }
+.sellos--barra svg { stroke: var(--rojo); }
+
+/* ---------- Promos ---------- */
+.promos { margin-top: clamp(3.5rem, 7vw, 6rem); }
+.promos-cabeza { max-width: 760px; margin-bottom: 2rem; }
+.promos-cabeza .carta-nota { margin-top: 0.8rem; }
+.promos-lista { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.promo {
+  display: flex; flex-direction: column; gap: 0.6rem;
+  border: 1.5px solid var(--rojo); border-radius: 20px;
+  padding: 1.4rem 1.4rem 1.2rem;
+  background: var(--crema-2);
+}
+.promo--destacada { background: rgba(155, 27, 27, 0.07); }
+.promo-nombre {
+  font-family: var(--serif); font-weight: 400;
+  font-variation-settings: "opsz" 48, "SOFT" 60;
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem); line-height: 1.05; color: var(--rojo);
+}
+.promo-detalle { font-size: 0.92rem; color: var(--cafe-2); flex: 1 1 auto; }
+.promo-precio {
+  font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1;
+  color: var(--cafe); font-variant-numeric: tabular-nums; margin-top: 0.2rem;
+}
+
+/* ---------- Carta completa: un pliego a varias columnas ---------- */
+.carta-completa { margin-top: clamp(3.5rem, 7vw, 6rem); }
+.completa-cabeza { max-width: 760px; margin-bottom: 2rem; }
+/* Tres columnas fijas, repartidas como en la carta impresa (cafetería /
+   bebidas especiales / para comer). Con columnas CSS automáticas los grupos
+   son tan dispares que el balanceo abre huecos de 200 px. */
+.pliego {
+  background: var(--crema-2);
+  border: 1px solid var(--linea);
+  border-radius: 22px;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.6rem, 3.4vw, 3rem);
+  align-items: start;
+}
+.pliego-col + .pliego-col { border-left: 1px solid var(--linea-suave); padding-left: clamp(1.6rem, 3.4vw, 3rem); }
+.grupo { padding: 0; margin-bottom: 2.2rem; --acento: var(--rojo); }
+.grupo:last-child { margin-bottom: 0; }
+.lista li, .extras, .esp-personaliza { break-inside: avoid; }
+.grupo-titulo, .grupo-nota, .lista-sub { break-after: avoid; }
+.grupo--verde { --acento: var(--matcha-2); }
+.grupo-titulo {
+  font-family: var(--serif); font-weight: 400;
+  font-variation-settings: "opsz" 48, "SOFT" 50;
+  font-size: 1.45rem; line-height: 1.1; color: var(--acento);
+  padding-bottom: 0.5rem; border-bottom: 1.5px solid var(--acento);
+  margin-bottom: 0.9rem;
+}
+.grupo-titulo--seguido { margin-top: 1.8rem; }
+.grupo-marca { font-family: var(--sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; vertical-align: 0.28em; margin-left: 0.3rem; color: var(--cafe-3); }
+.grupo-nota { font-size: 0.82rem; color: var(--cafe-3); margin-top: -0.4rem; margin-bottom: 0.8rem; }
+.lista li + li { margin-top: 0.75rem; }
+.lista-sub {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--cafe-3); margin: 1.2rem 0 0.7rem; padding-top: 0.7rem; border-top: 1px dashed var(--linea);
+}
+.item { display: flex; align-items: baseline; gap: 0.4rem; }
+.item-nombre { font-family: var(--serif); font-variation-settings: "opsz" 24, "SOFT" 40; font-size: 1.05rem; color: var(--cafe); }
+.item-guia { flex: 1 1 auto; min-width: 1.2rem; align-self: center; border-bottom: 1px dotted var(--cafe-3); opacity: 0.55; }
+.item-precio { font-weight: 700; font-size: 0.95rem; color: var(--acento); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.item-desc { font-size: 0.84rem; line-height: 1.45; color: var(--cafe-2); max-width: 34ch; margin-top: 0.1rem; }
+
+.extras { margin-top: 1.2rem; border: 1px dashed var(--linea); border-radius: 14px; padding: 1rem 1.1rem; background: var(--crema); }
+.extras-titulo { font-family: var(--serif); font-size: 1.1rem; color: var(--acento); margin-bottom: 0.5rem; }
+.extras-lista li { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.9rem; padding: 0.3rem 0; border-top: 1px solid var(--linea-suave); }
+.extras-lista li:first-child { border-top: 0; }
+.extras-lista li span:last-child { font-weight: 700; color: var(--acento); font-variant-numeric: tabular-nums; }
+.extras-nota, .extras-texto { font-size: 0.84rem; color: var(--cafe-2); margin-top: 0.6rem; }
+.carta-pie { margin-top: 1.4rem; font-size: 0.88rem; color: var(--cafe-3); max-width: 70ch; }
+
+/* ---------- Café de especialidad: lado derecho ---------- */
+.esp-lado { display: grid; gap: 1.6rem; }
+.dt-precio { font-family: var(--sans); font-size: 0.85rem; font-weight: 700; color: var(--cafe-3); font-variant-numeric: tabular-nums; }
+.esp-personaliza { border: 1px dashed rgba(155, 27, 27, 0.4); border-radius: 14px; padding: 1rem 1.2rem; }
+.esp-personaliza-titulo { font-family: var(--serif); font-size: 1.15rem; color: var(--rojo); margin-bottom: 0.4rem; }
+.esp-personaliza ul li { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.92rem; padding: 0.35rem 0; border-top: 1px solid var(--linea-suave); }
+.esp-personaliza ul li:first-child { border-top: 0; }
+.esp-personaliza ul li span:last-child { font-weight: 700; color: var(--rojo); font-variant-numeric: tabular-nums; }
+.esp-cita { font-family: var(--serif); font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.45; color: var(--cafe-2); border-left: 3px solid var(--matcha); padding-left: 1.1rem; }
+.esp-cita cite { display: block; font-family: var(--sans); font-style: normal; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cafe-3); margin-top: 0.6rem; }
+
+/* ---------- Sellos en contacto ---------- */
+.contacto-sellos { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.4rem; }
+.contacto-sellos li { border: 1px solid var(--linea); border-radius: 999px; padding: 0.3rem 0.8rem; font-size: 0.8rem; font-weight: 600; color: var(--cafe-2); }
+
 /* ---------- Café de especialidad ---------- */
 .especialidad { background: var(--crema-2); }
 .esp-cabeza { max-width: 900px; margin-bottom: 3rem; position: relative; z-index: 1; }
@@ -474,6 +576,9 @@ address .precio { color: var(--cafe-3); font-size: 0.95rem; }
   .nav-toggle { display: block; }
   .principios { grid-template-columns: 1fr; }
   .ig-feed { grid-template-columns: repeat(3, 1fr); }
+  .promos-lista { grid-template-columns: 1fr 1fr; }
+  .pliego { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pliego-col:nth-child(3) { border-left: 0; padding-left: 0; }
 }
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; padding-top: calc(var(--nav-h) + 1.5rem); align-content: start; gap: 0.5rem; }
@@ -504,6 +609,10 @@ address .precio { color: var(--cafe-3); font-size: 0.95rem; }
   .petalo-card span { margin: 0; text-align: right; }
   .carta-fotos { grid-template-columns: 1fr; }
   .carta-fotos figure:first-child { grid-column: auto; }
+  .promos-lista { grid-template-columns: 1fr; }
+  .pliego { grid-template-columns: 1fr; }
+  .pliego-col + .pliego-col { border-left: 0; padding-left: 0; border-top: 1px solid var(--linea-suave); padding-top: 1.8rem; }
+  .item-desc { max-width: none; }
   .ig-feed { grid-template-columns: repeat(2, 1fr); }
   .titulo-xl { font-size: clamp(2.1rem, 9vw, 3rem); }
   .petalo { width: 64px; }
@@ -525,4 +634,6 @@ address .precio { color: var(--cafe-3); font-size: 0.95rem; }
 }
 @media print {
   .cabecera, .call-fab, .cookie-banner, .marquee, .petalo, .tallo-sep, .hero-scroll, .tallo-nav { display: none !important; }
+  .pliego { border: 0; padding: 0; }
+  .grupo { break-inside: avoid; }
 }
