@@ -101,6 +101,18 @@ repetido: el motivo del sitio es la flor.
   finos en SVG; al entrar en pantalla el centro aparece, los tallos se
   dibujan y los pétalos se abren con stagger radial. La rama Matcha cambia
   `--acento` a verde. Por debajo de 760 px pasa a lista.
+- **Cortina de entrada** (`.cortina`, *preloader* / curtain reveal): panel
+  rojo en el que el glifo se descubre de abajo arriba con `clip-path`, un
+  tallo crece, la palabra «Ceibo» sube desde una máscara y el pie asienta
+  su `letter-spacing`; después el panel se levanta con `expo.inOut` y un
+  **borde curvo** (SVG en `top:100%` que se aplana), mientras el contenido
+  de dentro sube un 16 % más (paralaje). Dos enganches distintos:
+  `alAbrirse()` arranca la flor del hero cuando la cortina EMPIEZA a subir
+  —así la página ya está viva al asomar— y `retirar()` quita el nodo,
+  devuelve el scroll y hace `ScrollTrigger.refresh()`. Se retira siempre:
+  sin GSAP, con reduced-motion (ahí ni se pinta), con `<noscript>`, por
+  `setTimeout` de seguridad y por un script inline del HTML por si
+  `main.js` no carga.
 - **Pliego de la carta completa** (`.pliego`): tres columnas *explícitas*
   en grid (una por `div.pliego-col`), no `columns` CSS. Con columnas
   automáticas el balanceo abría huecos de 200 px entre grupos tan

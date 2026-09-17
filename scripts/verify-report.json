@@ -1,9 +1,115 @@
 {
-  "fecha": "2026-09-17T19:53:06.024Z",
+  "fecha": "2026-09-17T21:31:35.213Z",
   "base": "http://127.0.0.1:8993/",
-  "total": 57,
+  "total": 69,
   "fallos": 0,
   "resultados": [
+    {
+      "prueba": "cortina: al cargar cubre la ventana entera y bloquea el scroll",
+      "ok": true,
+      "detalle": {
+        "t": 0,
+        "armada": true,
+        "top": 0,
+        "fuera": false,
+        "palabraFuera": false,
+        "pie": 0
+      }
+    },
+    {
+      "prueba": "cortina: lleva glifo y borde curvo",
+      "ok": true,
+      "detalle": {
+        "glifo": true,
+        "borde": true
+      }
+    },
+    {
+      "prueba": "cortina: la palabra empieza fuera de su máscara y luego sube a su sitio (yPercent + y a cero)",
+      "ok": true,
+      "detalle": [
+        {
+          "t": 0,
+          "armada": true,
+          "top": 0,
+          "fuera": false,
+          "palabraFuera": false,
+          "pie": 0
+        },
+        {
+          "t": 68,
+          "armada": true,
+          "top": 0,
+          "fuera": false,
+          "palabraFuera": false,
+          "pie": 0
+        },
+        {
+          "t": 129,
+          "armada": true,
+          "top": 0,
+          "fuera": false,
+          "palabraFuera": false,
+          "pie": 0
+        },
+        {
+          "t": 190,
+          "armada": true,
+          "top": 0,
+          "fuera": false,
+          "palabraFuera": false,
+          "pie": 0
+        }
+      ]
+    },
+    {
+      "prueba": "cortina: el pie se enciende",
+      "ok": true,
+      "detalle": 1
+    },
+    {
+      "prueba": "cortina: se levanta hacia arriba antes de irse (top negativo)",
+      "ok": true,
+      "detalle": -900
+    },
+    {
+      "prueba": "cortina: el hero espera (con la cortina puesta la flor no se ha abierto)",
+      "ok": true,
+      "detalle": {
+        "fuera": false,
+        "flor": 0
+      }
+    },
+    {
+      "prueba": "cortina: se retira y [hidden] gana a display:grid",
+      "ok": true,
+      "detalle": {
+        "fuera": true,
+        "display": "none",
+        "bloqueo": false,
+        "flor": 10
+      }
+    },
+    {
+      "prueba": "cortina: devuelve el scroll",
+      "ok": true,
+      "detalle": {
+        "fuera": true,
+        "display": "none",
+        "bloqueo": false,
+        "flor": 10
+      }
+    },
+    {
+      "prueba": "cortina: al irse, la flor del hero ya se ha abierto sola",
+      "ok": true,
+      "detalle": 10
+    },
+    {
+      "prueba": "cortina: sin errores de consola",
+      "ok": true,
+      "detalle": []
+    },
     {
       "prueba": "hero: html.has-motion activo con GSAP",
       "ok": true,
@@ -17,7 +123,7 @@
     {
       "prueba": "hero: al cargar la mayoría de flores aún no se han abierto (se abren una a una)",
       "ok": true,
-      "detalle": 9
+      "detalle": 10
     },
     {
       "prueba": "hero: todas las flores abiertas tras ~3,5 s",
@@ -52,7 +158,7 @@
     {
       "prueba": "magnetic: el CTA se desplaza con el puntero",
       "ok": true,
-      "detalle": "matrix(1, 0, 0, 1, 18.0139, -6.6314)"
+      "detalle": "matrix(1, 0, 0, 1, 17.9966, -6.6256)"
     },
     {
       "prueba": "magnetic: vuelve a su sitio al salir",
@@ -296,6 +402,14 @@
       "detalle": "27"
     },
     {
+      "prueba": "reduced-motion: la cortina no llega a verse",
+      "ok": true,
+      "detalle": {
+        "display": "none",
+        "hidden": true
+      }
+    },
+    {
       "prueba": "sin CDN: contenido visible y flor abierta",
       "ok": true,
       "detalle": {
@@ -303,6 +417,14 @@
         "h1": 1,
         "flores": true,
         "contador": "27"
+      }
+    },
+    {
+      "prueba": "sin CDN: la cortina se retira igual (no deja el sitio tapado)",
+      "ok": true,
+      "detalle": {
+        "hidden": true,
+        "display": "none"
       }
     },
     {

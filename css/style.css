@@ -262,6 +262,56 @@ html.has-motion .tallo { stroke-dasharray: 1; stroke-dashoffset: 1; }
 .marquee:hover .marquee-pista { animation-play-state: paused; }
 
 /* ---------- Secciones ---------- */
+/* ---------- Cortina de entrada (preloader) ----------
+   Panel rojo que se levanta con un borde curvo, como un pétalo que se
+   despega, y deja ver la página. Todo lo que se mueve va bajo
+   .has-motion: si GSAP no carga o el usuario pide menos movimiento, la
+   cortina se retira al instante y nadie ve un panel a medias.
+   Ojo: .cortina usa display:grid, así que [hidden] necesita su propia
+   regla o no oculta nada. */
+.cortina {
+  position: fixed; inset: 0; z-index: 300;
+  background: radial-gradient(120% 90% at 50% 38%, #9B1B1B 0%, #851515 46%, #6E1111 100%);
+  display: grid; place-content: center; justify-items: center;
+  transform: translateZ(0);
+  will-change: transform;
+}
+.cortina[hidden] { display: none; }
+html.cortina-activa { overflow: hidden; }
+
+.cortina__lienzo { display: grid; justify-items: center; gap: 0.9rem; padding: 0 var(--gutter); text-align: center; }
+.cortina__glifo { width: clamp(48px, 6vw, 70px); height: auto; fill: var(--crema); opacity: 0.95; }
+.cortina__tallo { display: block; width: 1.5px; height: clamp(38px, 6vh, 62px); background: rgba(246, 239, 228, 0.42); transform-origin: 50% 100%; }
+.cortina__marca { overflow: hidden; padding-bottom: 0.08em; }
+.cortina__marca span {
+  display: block;
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 144, "SOFT" 40;
+  font-weight: 400;
+  font-size: clamp(3.2rem, 11vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--crema);
+}
+.cortina__linea { display: block; width: min(42vw, 280px); height: 1px; background: rgba(246, 239, 228, 0.4); transform-origin: 50% 50%; }
+.cortina__pie {
+  font-family: var(--sans);
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.34em; text-transform: uppercase;
+  color: rgba(246, 239, 228, 0.72);
+}
+/* el borde curvo vive justo debajo del panel: al subir, el corte no es recto */
+.cortina__borde { position: absolute; left: -2%; top: 100%; width: 104%; height: clamp(48px, 9vh, 110px); fill: #6E1111; transform-origin: 50% 0%; }
+
+html.has-motion .cortina__tallo { transform: scaleY(0); }
+html.has-motion .cortina__glifo { clip-path: inset(100% 0 0 0); }
+html.has-motion .cortina__marca span { transform: translateY(108%); }
+html.has-motion .cortina__linea { transform: scaleX(0); }
+html.has-motion .cortina__pie { opacity: 0; letter-spacing: 0.62em; }
+
+/* con movimiento reducido no debe verse ni un fotograma de rojo */
+@media (prefers-reduced-motion: reduce) { .cortina { display: none; } }
+
 section { position: relative; padding: clamp(4rem, 9vw, 8rem) var(--gutter); }
 .has-petalo { overflow: visible; }
 .petalo { position: absolute; z-index: 0; pointer-events: none; width: clamp(70px, 8vw, 130px); height: auto; opacity: 0.9; }

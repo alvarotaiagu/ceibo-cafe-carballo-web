@@ -46,6 +46,68 @@ const bajarDespacio = async (page, hasta) => {
 (async () => {
   const browser = await chromium.launch();
 
+  /* ================= 0 · cortina de entrada (preloader) ================= */
+  {
+    const page = await nuevaPagina(browser);
+    await page.goto(BASE, { waitUntil: 'domcontentloaded' });
+    /* nada de tiempos absolutos: el CDN puede tardar y la cortina arranca
+       cuando main.js se ejecuta, no cuando carga el DOM. Se muestrea el
+       estado real cada 60 ms y se comprueba la SECUENCIA. */
+    const traza = await page.evaluate(() => new Promise((res) => {
+      const m = [];
+      const t0 = performance.now();
+      const tic = () => {
+        const c = document.querySelector('[data-cortina]');
+        const sp = document.querySelector('.cortina__marca span').getBoundingClientRect();
+        const cj = document.querySelector('.cortina__marca').getBoundingClientRect();
+        m.push({
+          t: Math.round(performance.now() - t0),
+          armada: document.documentElement.classList.contains('has-motion'),
+          top: Math.round(c.getBoundingClientRect().top),
+          fuera: c.hidden,
+          palabraFuera: sp.top >= cj.bottom - 2,
+          pie: parseFloat(getComputedStyle(document.querySelector('.cortina__pie')).opacity)
+        });
+        if (c.hidden || m.length > 120) return res(m);
+        setTimeout(tic, 60);
+      };
+      tic();
+    }));
+    const armados = traza.filter((f) => f.armada);
+    const t0 = await page.evaluate(() => ({
+      glifo: !!document.querySelector('.cortina__glifo'),
+      borde: !!document.querySelector('.cortina__borde')
+    }));
+    ok('cortina: al cargar cubre la ventana entera y bloquea el scroll', traza[0].top === 0 && !traza[0].fuera, traza[0]);
+    ok('cortina: lleva glifo y borde curvo', t0.glifo && t0.borde, t0);
+    ok('cortina: la palabra empieza fuera de su máscara y luego sube a su sitio (yPercent + y a cero)',
+      armados.some((f) => f.palabraFuera) && armados.some((f) => !f.palabraFuera), armados.slice(0, 4));
+    ok('cortina: el pie se enciende', armados.some((f) => f.pie > 0.5), Math.max.apply(null, armados.map((f) => f.pie)));
+    ok('cortina: se levanta hacia arriba antes de irse (top negativo)', traza.some((f) => f.top < -40), Math.min.apply(null, traza.map((f) => f.top)));
+
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForTimeout(700);
+    await page.screenshot({ path: path.join(CAPS, '21-cortina.png') });
+    const enPie = await page.evaluate(() => ({
+      fuera: document.querySelector('[data-cortina]').hidden,
+      flor: Array.from(document.querySelectorAll('.flor .flor-abre')).filter((g) => parseFloat(getComputedStyle(g).opacity) > 0.95).length
+    }));
+    ok('cortina: el hero espera (con la cortina puesta la flor no se ha abierto)', enPie.fuera || enPie.flor === 0, enPie);
+
+    await page.waitForTimeout(4000);
+    const t2 = await page.evaluate(() => ({
+      fuera: document.querySelector('[data-cortina]').hidden,
+      display: getComputedStyle(document.querySelector('[data-cortina]')).display,
+      bloqueo: document.documentElement.classList.contains('cortina-activa'),
+      flor: Array.from(document.querySelectorAll('.flor .flor-abre')).filter((g) => parseFloat(getComputedStyle(g).opacity) > 0.95).length
+    }));
+    ok('cortina: se retira y [hidden] gana a display:grid', t2.fuera && t2.display === 'none', t2);
+    ok('cortina: devuelve el scroll', !t2.bloqueo, t2);
+    ok('cortina: al irse, la flor del hero ya se ha abierto sola', t2.flor === 10, t2.flor);
+    ok('cortina: sin errores de consola', page.errores.length === 0, page.errores);
+    await page.close();
+  }
+
   /* ================= 1 · portada: flor que se abre, hero, marquee ================= */
   {
     const page = await nuevaPagina(browser);
@@ -284,6 +346,8 @@ const bajarDespacio = async (page, hasta) => {
     ok('reduced-motion: nada oculto', rm.ocultos === 0, rm.ocultos);
     ok('reduced-motion: marquee parado', rm.marquee === 'none', rm.marquee);
     ok('reduced-motion: el contador muestra 27 directamente', rm.contador === '27', rm.contador);
+    const rmC = await page.evaluate(() => { const c = document.querySelector('[data-cortina]'); return { display: getComputedStyle(c).display, hidden: c.hidden }; });
+    ok('reduced-motion: la cortina no llega a verse', rmC.display === 'none', rmC);
     await page.screenshot({ path: path.join(CAPS, '10-reduced-motion.png') });
     await page.close();
   }
@@ -303,6 +367,8 @@ const bajarDespacio = async (page, hasta) => {
     ok('sin CDN: contenido visible y flor abierta', !sin.motion && sin.h1 === 1 && sin.flores && sin.contador === '27', sin);
     await page.click('.map-consent');
     await page.waitForTimeout(300);
+    const sinC = await page.evaluate(() => ({ hidden: document.querySelector('[data-cortina]').hidden, display: getComputedStyle(document.querySelector('[data-cortina]')).display }));
+    ok('sin CDN: la cortina se retira igual (no deja el sitio tapado)', sinC.hidden && sinC.display === 'none', sinC);
     ok('sin CDN: el mapa sigue funcionando', (await page.$$('.mapa iframe')).length === 1);
     await page.close();
   }

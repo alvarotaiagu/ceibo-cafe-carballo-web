@@ -127,6 +127,75 @@
     gsap.ticker.lagSmoothing(0);
   }
 
+  /* ---------- Cortina de entrada (preloader) ----------
+     Orquestación: el tallo crece, el glifo se descubre de abajo arriba, la
+     palabra sube desde una máscara, la línea se abre y el pie asienta su
+     letter-spacing. Después el panel se levanta con un borde curvo y el
+     contenido de dentro sube un poco más rápido (paralaje) para que el
+     corte no parezca una persiana.
+
+     Dos momentos distintos, y son distintos a propósito:
+       · alAbrirse(fn) → cuando EMPIEZA a levantarse, para que la página ya
+         esté viva cuando asoma (el hero arranca aquí, no después).
+       · retirar()     → cuando termina: quita el nodo, devuelve el scroll y
+         refresca ScrollTrigger, que midió con overflow:hidden.
+     Se retira SIEMPRE: sin GSAP, con reduced-motion o si algo falla a mitad
+     (red de seguridad), porque una cortina que se queda tapa el sitio entero. */
+  const cortina = (function initCortina() {
+    const el = $("[data-cortina]");
+    const espera = [];
+    let abierta = false;
+    let fuera = false;
+
+    function abrir() {
+      if (abierta) return;
+      abierta = true;
+      espera.splice(0).forEach((fn) => { try { fn(); } catch (e) {} });
+    }
+    function retirar() {
+      abrir();
+      if (fuera) return;
+      fuera = true;
+      if (el) el.hidden = true;
+      html.classList.remove("cortina-activa");
+      if (lenis) lenis.start();
+      if (gsapReady) ScrollTrigger.refresh();
+    }
+
+    const api = { alAbrirse: (fn) => (abierta ? fn() : espera.push(fn)) };
+    if (!el || !motion) { retirar(); return api; }
+
+    html.classList.add("cortina-activa");
+    if (lenis) lenis.stop();
+
+    const lienzo = $(".cortina__lienzo", el);
+    const glifo = $(".cortina__glifo", el);
+    const tallo = $(".cortina__tallo", el);
+    const marca = $(".cortina__marca span", el);
+    const linea = $(".cortina__linea", el);
+    const pie = $(".cortina__pie", el);
+    const borde = $(".cortina__borde", el);
+    const SUBE = 1.25; /* segundo en el que arranca el levantamiento */
+
+    const tl = gsap.timeline({ onComplete: retirar });
+    if (tallo) tl.to(tallo, { scaleY: 1, duration: 0.62, ease: "power2.out" }, 0);
+    if (glifo) tl.to(glifo, { clipPath: "inset(0% 0 0 0)", duration: 0.8, ease: "power2.inOut" }, 0.1);
+    /* el estado inicial es un translateY(108%) de CSS: GSAP lo lee del matrix
+       como "y: 103px", no como yPercent, así que hay que poner a cero LAS DOS
+       o la palabra se queda fuera de la máscara y no aparece nunca. */
+    if (marca) tl.to(marca, { y: 0, yPercent: 0, duration: 0.9, ease: "expo.out" }, 0.42);
+    if (linea) tl.to(linea, { scaleX: 1, duration: 0.7, ease: "power2.inOut" }, 0.7);
+    if (pie) tl.to(pie, { opacity: 1, letterSpacing: "0.34em", duration: 0.85, ease: "power2.out" }, 0.72);
+
+    tl.add(abrir, SUBE);
+    if (lienzo) tl.to(lienzo, { yPercent: -16, opacity: 0, duration: 0.6, ease: "power2.in" }, SUBE);
+    if (borde) tl.to(borde, { scaleY: 0.1, duration: 1.0, ease: "expo.inOut" }, SUBE);
+    tl.to(el, { yPercent: -100, duration: 1.0, ease: "expo.inOut" }, SUBE);
+
+    setTimeout(retirar, 5000);
+    return api;
+  })();
+
   /* ---------- Indicador de progreso: tallo lateral (escritorio) y flor en la
      cabecera (móvil). Listener de scroll propio (sin GSAP) para que funcione
      también sin CDN y con reduced-motion; el CSS decide cuál se ve. ---------- */
@@ -254,7 +323,7 @@
     const lamina = $(".flor-lamina");
     const heroTitle = $(".hero-titulo");
     const heroReveals = $$(".hero [data-reveal]");
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" }, delay: 0.15 });
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" }, delay: 0.15, paused: true });
 
     if (lamina) {
       const tallo = $(".tallo", lamina);
@@ -281,6 +350,10 @@
       tl.to(splitMap.get(heroTitle), { opacity: 1, y: 0, rotation: 0, duration: 1.2, stagger: 0.09, ease: "power3.out" }, 0.3);
     }
     tl.to(heroReveals, { opacity: 1, y: 0, duration: 1.1, stagger: 0.1 }, 0.9);
+
+    /* la flor no empieza a abrirse hasta que la cortina se levanta: así lo
+       primero que se ve al descubrirse la página ya está en movimiento */
+    cortina.alAbrirse(() => tl.play());
   })();
 
   /* ---------- Char-reveal de los demás titulares ---------- */
